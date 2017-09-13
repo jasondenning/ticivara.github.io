@@ -1,0 +1,26 @@
+@import "typefaces"
+@import "spectre/spectre"
+@import "spectre/spectre-icons"
+@import "docs"
+
+/* workaround for refresh issues in webkit-based browsers */
+@-webkit-keyframes androidBugfix
+  from
+    padding: 0
+  to
+    padding: 0
+
+body
+  -webkit-animation: androidBugfix infinite 1s
+/* end workaround */
+
+#sidebar
+  background-image: url('../img/lghtmesh.png')
+  background-repeat: repeat
+  .s-brand
+    h1, h2
+      font-size: 25px
+
+canvas#diagram
+  background: #FFFFFF
+
