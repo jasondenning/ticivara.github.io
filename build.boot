@@ -34,7 +34,7 @@
         (reload :on-jsload 'app.core/main)
         (cljs-repl-env) ;; doesn't start a REPL server, use with cider-jack-in
         (cljs :source-map true :optimizations :none)
-        (target :dir #{"target/robe-sewing/"})))
+        (target :dir #{"target/"})))
 
 (deftask dist []
   (comp (sass :output-style :compressed)
