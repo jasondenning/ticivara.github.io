@@ -93,14 +93,6 @@
                                               (* n (+ pos-mandala-height pos-kusi-width))
                                               (/ pos-mandala-height 2)) 1)))
 
-        text-panel-number (fn [ctx n]
-                            (text-title ctx (str (+ n 1)) "40px"
-                                        (- (+ pos-buffer-width
-                                              pos-border-width
-                                              (* n (+ pos-mandala-width pos-kusi-width))
-                                              (/ pos-mandala-width 2)) 2)
-                                        76))
-
         text-accumulate-horiz (fn [ctx m k]
                                 (text-num ctx (+ val-buffer-width
                                                  (when (< 0 (+ m k)) val-border-width)
@@ -128,7 +120,7 @@
         monet-canvas (canvas/init canvas-dom "2d")
         ctx (canvas/get-context canvas-dom "2d")
         img (js/Image.)
-        _ (aset img "src" "img/sabong-diagram.svg")]
+        _ (aset img "src" "img/sabong-pattern.svg")]
     (canvas/add-entity
      monet-canvas
      :background
@@ -141,13 +133,6 @@
 
             (text-title title "30px" 0 -8.0)
             (text (str "Cut Width: " val-cut-width ", Cut Height: " val-cut-height) 50.0 -8.0)
-
-            ;; panel numbers
-            (text-panel-number 0)
-            (text-panel-number 1)
-            (text-panel-number 2)
-            (text-panel-number 3)
-            (text-panel-number 4)
 
             ;; buffer at the edges
             (text-num val-buffer-width 1.5 10.2)
