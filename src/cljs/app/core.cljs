@@ -69,8 +69,9 @@
   (r/render [#'<page>] (.getElementById js/document "app")))
 
 (defn main []
-  (hook-browser-navigation!)
+  ;; FIXME
+  ;;(hook-browser-navigation!)
   (mount-components))
 
-;;(when-not (repl/alive?)
-;;  (repl/connect "ws://localhost:9001"))
+(when-not (repl/alive?)
+  (repl/connect "ws://localhost:9001"))

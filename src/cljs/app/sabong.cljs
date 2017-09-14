@@ -6,15 +6,13 @@
    [clojure.string :as string]
    ;; features
    [monet.canvas :as canvas]
-   [markdown.core :refer [md->html]]
-   [cljsjs.pdfmake]
-   [cljsjs.pdfmakefonts]
    ;; app
-   [app.helpers :refer [load-text]]
+   [app.helpers :as h]
    [app.text :refer [text]]))
 
 (defn draw-sabong-pattern [data]
-  (let [title (:title @data)
+  (let [sabong (:sabong @data)
+        title (:title sabong)
         ;; values from the SVG for positioning
         ;; don't use a hash, not very readable in the expressions
         pos-pattern-width 232
@@ -29,8 +27,8 @@
         ;; calcualted size values to display, these could be user inputs
         ;; don't use a hash, not very readable in the expressions
         val-buffer-width pos-buffer-width
-        val-inner-width (js/Number (:width @data))
-        val-inner-height (js/Number (:height @data))
+        val-inner-width (js/Number (:width sabong))
+        val-inner-height (js/Number (:height sabong))
         val-cut-width (+ val-inner-width (* 2 val-buffer-width))
         val-cut-height (+ val-inner-height (* 2 val-buffer-width))
         val-border-width pos-border-width
@@ -55,9 +53,7 @@
                        (canvas/text ctx {:text s :x x :y y})))
 
         text-num (fn [ctx s x y]
-                   (let [s (if (re-find #"\." (str s)) (str s) (str s ".0"))
-                         [_ s] (re-matches #"([0-9]+\.[0-9])[0-9]*" s)]
-                     (text ctx s x y)))
+                   (text ctx (h/num-pad s) x y))
 
         text-mandala-width (fn [ctx n]
                              (text-num ctx val-mandala-width
@@ -121,6 +117,7 @@
         ctx (canvas/get-context canvas-dom "2d")
         img (js/Image.)
         _ (aset img "src" "img/sabong-pattern.svg")]
+
     (canvas/add-entity
      monet-canvas
      :background
@@ -187,29 +184,17 @@
             ))))
     ))
 
+(defn sabong-update [data]
+  (h/load-text :#sabong-guide-text :sabong-guide (fn [] (draw-sabong-pattern data))))
+
 (defn <content-sabong> [data]
   (r/create-class
-   {:component-did-mount
-    (fn [] (load-text :#sabong-guide-text :sabong-guide (fn [] (draw-sabong-pattern data))))
-    :component-will-update
-    (fn [] (load-text :#sabong-guide-text :sabong-guide (fn [] (draw-sabong-pattern data))))
+   {:component-did-mount (fn [] (sabong-update data))
+    :component-will-update (fn [] (sabong-update data))
 
     :reagent-render
     (fn []
-      (let [download-pdf
-            (fn []
-              (let [canvas-dom (sel1 :#sabong-pattern-canvas)
-                    img (.toDataURL canvas-dom)
-                    title (:title @data)
-                    filename (str (if (string/blank? title) "robe-pattern" title) ".pdf")
-                    doc (clj->js {:pageSize "A4"
-                                  :pageOrientation "landscape"
-                                  :pageMargins [15 15 15 15]
-                                  :content [{:image img
-                                             :width 860
-                                             :margin [0 0 0 0]}]
-                                  :info {:title title}})]
-                (.download (.createPdf js/pdfMake doc) filename)))]
+      (let [sabong (:sabong @data)]
 
          [:div.container {:id "sabong"}
           [:h3.s-title
@@ -221,9 +206,9 @@
             [:div.form-group
              [:label.form-label {:for "diagram_title"} "Title:"]
              [:input.form-input {:id "diagram_title" :type "text"
-                                 :value (:title @data)
+                                 :value (:title sabong)
                                  :on-change (fn [e]
-                                              (do (swap! data assoc :title (.-target.value e))
+                                              (do (swap! data assoc-in [:sabong :title] (.-target.value e))
                                                   (draw-sabong-pattern data)))}]]]
 
            [:div.columns
@@ -234,9 +219,9 @@
                 [:label.form-label {:for "robe_width"} "Width:"]]
                [:div.col-6
                 [:input.form-input {:id "robe_width" :type "number"
-                                    :value (:width @data)
+                                    :value (:width sabong)
                                     :on-change (fn [e]
-                                                 (do (swap! data assoc :width (.-target.value e))
+                                                 (do (swap! data assoc [:sabong :width] (.-target.value e))
                                                      (draw-sabong-pattern data)))}]]]
 
               [:div.form-group
@@ -244,9 +229,9 @@
                 [:label.form-label {:for "robe_height"} "Height:"]]
                [:div.col-6
                 [:input.form-input {:id "robe_height" :type "number"
-                                    :value (:height @data)
+                                    :value (:height sabong)
                                     :on-change (fn [e]
-                                                 (do (swap! data assoc :height (.-target.value e))
+                                                 (do (swap! data assoc [:sabong :height] (.-target.value e))
                                                      (draw-sabong-pattern data)))}]]]]]
 
             [:div.col-8
@@ -268,7 +253,11 @@
                                     }]]]]]]
 
            [:div.docs-note
-            [:button.btn.btn-primary {:on-click (fn [e] (download-pdf))} "Download PDF"]]
+            [:button.btn.btn-primary
+             {:on-click (fn [_] (h/download-pdf :#sabong-pattern-canvas
+                                                (:title sabong)
+                                                [15 15 15 15]))}
+             "Download PDF"]]
 
            [:canvas {:id "sabong-pattern-canvas" :width 1600 :height 1000}]]
 

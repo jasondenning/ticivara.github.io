@@ -4,15 +4,15 @@
    [reagent.core :as r]
    [clojure.string :as string]
    ;; app
-   [app.helpers :refer [load-text]]
+   [app.helpers :as h]
    [app.text :refer [text]]))
 
 (defn <content-civara> [data]
   (r/create-class
    {:component-did-mount
-    (fn [] (load-text :#civara-guide-text :civara-guide nil))
+    (fn [] (h/load-text :#civara-guide-text :civara-guide nil))
     :component-will-update
-    (fn [] (load-text :#civara-guide-text :civara-guide nil))
+    (fn [] (h/load-text :#civara-guide-text :civara-guide nil))
 
     :reagent-render
     (fn []
