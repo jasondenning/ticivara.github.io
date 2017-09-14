@@ -14,9 +14,9 @@
    [app.text :refer [text]]))
 
 (defn draw-sanghati-pattern [data]
-  (let [pos-pattern-width 297
-        pos-pattern-height 210
-        pattern-scale 5.3
+  (let [pos-pattern-width 282
+        pos-pattern-height 167
+        pattern-scale 11.8
 
         ;; draws text with x y from the bottom left corner of the pattern image
         text (fn [ctx s x y] (let [sc pattern-scale
@@ -41,8 +41,6 @@
         (-> ctx
             (canvas/draw-image img {:x 0 :y 0 :w (* pos-pattern-width pattern-scale)
                                     :h (* pos-pattern-height pattern-scale)})
-
-            (text "hey" 50.0 -8.0)
 
             ))))
     ))
@@ -85,7 +83,7 @@
        [:div.docs-note
         [:button.btn.btn-primary {:on-click (fn [e] (download-pdf))} "Download PDF"]]
 
-       [:canvas {:id "sanghati-pattern-canvas" :width 1600 :height 1000}]]
+        [:canvas {:id "sanghati-pattern-canvas" :width 3500 :height 2400 :style {:max-width "1600px"}}]]
 
        [:div.docs-note
         [:h5.s-title {:id "sanghati-guide"}
