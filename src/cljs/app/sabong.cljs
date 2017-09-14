@@ -202,6 +202,8 @@
           [:div.docs-note
            [:h5.s-title {:id "sabong-pattern"}
             [:a {:href "#sabong-pattern", :class "anchor", :aria-hidden "true"} "#"] "Pattern"]
+
+           ;; Forms
            [:form
             [:div.form-group
              [:label.form-label {:for "diagram_title"} "Title:"]
@@ -221,7 +223,7 @@
                 [:input.form-input {:id "robe_width" :type "number"
                                     :value (:width sabong)
                                     :on-change (fn [e]
-                                                 (do (swap! data assoc [:sabong :width] (.-target.value e))
+                                                 (do (swap! data assoc-in [:sabong :width] (.-target.value e))
                                                      (draw-sabong-pattern data)))}]]]
 
               [:div.form-group
@@ -231,7 +233,7 @@
                 [:input.form-input {:id "robe_height" :type "number"
                                     :value (:height sabong)
                                     :on-change (fn [e]
-                                                 (do (swap! data assoc [:sabong :height] (.-target.value e))
+                                                 (do (swap! data assoc-in [:sabong :height] (.-target.value e))
                                                      (draw-sabong-pattern data)))}]]]]]
 
             [:div.col-8
@@ -251,6 +253,7 @@
                 [:input.form-input {:id "shrinking_height_percent" :type "number"
                                     :value 0
                                     }]]]]]]
+           ;; end of Forms
 
            [:div.docs-note
             [:button.btn.btn-primary

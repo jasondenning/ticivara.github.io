@@ -16,14 +16,31 @@
         ;; values from the SVG for positioning
         pos-pattern-width 297
         pos-pattern-height 210
+        pos-buffer-width 1.0
+        pos-border-width 14.0
+        pos-kusi-width 6.0
+        pos-mandala-width 31.0
+        pos-mandala-height 58.0
         ;; scale
         pattern-scale 11.3
+
+        ;; calcualted size values to display, these could be user inputs
+        val-buffer-width pos-buffer-width
+        val-inner-width (js/Number (:width sanghati))
+        val-inner-height (js/Number (:height sanghati))
+        ;; TODO inputs
+        val-cut-width (+ val-inner-width (* 2 val-buffer-width))
+        val-cut-height (+ val-inner-height (* 2 val-buffer-width))
+        val-border-width pos-border-width
+        val-kusi-width pos-kusi-width
+        val-mandala-width   (/ (- val-inner-width (* 2 val-border-width) (* 4 val-kusi-width)) 5)
+        val-mandala-height (/ (- val-inner-height (* 2 val-border-width) (* 2 val-kusi-width)) 3)
 
         ;; draws from the TOP LEFT corner
         text (fn [ctx s x y] (let [sc pattern-scale
                                    x (* x sc)
                                    y (* y sc)]
-                               (canvas/font-style ctx "24px \"Fira Sans\"")
+                               (canvas/font-style ctx "30px \"Fira Sans\"")
                                (canvas/fill-style ctx "#000000")
                                (canvas/text ctx {:text s :x x :y y})))
 
@@ -50,7 +67,10 @@
             (canvas/draw-image img-guide {:x 0 :y 0 :w (* pos-pattern-width pattern-scale) :h (* pos-pattern-height pattern-scale)})
 
             (text-title title "150px" 20 20)
-            (text (str "Pos Width: " pos-pattern-width ", Pos Height: " pos-pattern-height) 20 45.0)
+            (text (str "Final width: " val-inner-width) 20 45.0)
+            (text (str "Final height: " val-inner-height) 20 49.0)
+            (text (str "Cut width: " val-cut-width) 20 54.0)
+            (text (str "Cut height: " val-cut-height) 20 58.0)
 
             ))))
 
@@ -240,6 +260,58 @@
        [:div.docs-note
         [:h5.s-title {:id "sanghati-pattern"}
          [:a {:href "#sanghati-pattern", :class "anchor", :aria-hidden "true"} "#"] "Pattern"]
+
+        ;; Forms
+        [:form
+         [:div.form-group
+          [:label.form-label {:for "pattern_title"} "Title:"]
+          [:input.form-input {:id "pattern_title" :type "text"
+                              :value (:title sanghati)
+                              :on-change (fn [e]
+                                           (do (swap! data assoc-in [:sanghati :title] (.-target.value e))
+                                               (draw-sanghati-pattern data)))}]]]
+
+        [:div.columns
+         [:div.col-4
+          [:form.form-horizontal
+           [:div.form-group
+            [:div.col-6
+             [:label.form-label {:for "robe_width"} "Final width:"]]
+            [:div.col-6
+             [:input.form-input {:id "robe_width" :type "number"
+                                 :value (:width sanghati)
+                                 :on-change (fn [e]
+                                              (do (swap! data assoc-in [:sanghati :width] (.-target.value e))
+                                                  (draw-sanghati-pattern data)))}]]]
+
+           [:div.form-group
+            [:div.col-6
+             [:label.form-label {:for "robe_height"} "Final height:"]]
+            [:div.col-6
+             [:input.form-input {:id "robe_height" :type "number"
+                                 :value (:height sanghati)
+                                 :on-change (fn [e]
+                                              (do (swap! data assoc-in [:sanghati :height] (.-target.value e))
+                                                  (draw-sanghati-pattern data)))}]]]]]
+
+         [:div.col-8
+          [:form.form-horizontal
+           [:div.form-group
+            [:div.col-8
+             [:label.form-label {:for "shrinking_width_percent"} "Shrinking width percent:"]]
+            [:div.col-4
+             [:input.form-input {:id "shrinking_width_percent" :type "number"
+                                 :value 0
+                                 }]]]
+
+           [:div.form-group
+            [:div.col-8
+             [:label.form-label {:for "shrinking_height_percent"} "Shrinking height percent:"]]
+            [:div.col-4
+             [:input.form-input {:id "shrinking_height_percent" :type "number"
+                                 :value 0
+                                 }]]]]]]
+        ;; end of Forms
 
        [:div.docs-note
         [:button.btn.btn-primary
