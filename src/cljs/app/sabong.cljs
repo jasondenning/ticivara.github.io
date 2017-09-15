@@ -26,15 +26,16 @@
         pattern-scale 6.5
         ;; calcualted size values to display, these could be user inputs
         ;; don't use a hash, not very readable in the expressions
-        val-buffer-width pos-buffer-width
+        val-buffer-width (js/Number (:buffer-width sabong))
         val-inner-width (js/Number (:width sabong))
         val-inner-height (js/Number (:height sabong))
-        val-cut-width (+ val-inner-width (* 2 val-buffer-width))
-        val-cut-height (+ val-inner-height (* 2 val-buffer-width))
-        val-border-width pos-border-width
-        val-kusi-width pos-kusi-width
-        val-mandala-width   (/ (- val-inner-width (* 2 val-border-width) (* 4 val-kusi-width)) 5)
-        val-mandala-height (/ (- val-inner-height (* 2 val-border-width) (* 2 val-kusi-width)) 3)
+        val-kusi-width (js/Number (:kusi-width sabong))
+        [val-cut-width
+         val-cut-height
+         val-mandala-width
+         val-mandala-height
+         val-border-width
+         val-border-height] (h/calc-shrinking-lengths (:sabong @data))
 
         ;; draws text with x y from the bottom left corner of the pattern image
         text (fn [ctx s x y] (let [sc pattern-scale
@@ -102,7 +103,7 @@
 
         text-accumulate-vert (fn [ctx m k]
                                 (text-num ctx (+ val-buffer-width
-                                                 (when (< 0 (+ m k)) val-border-width)
+                                                 (when (< 0 (+ m k)) val-border-height)
                                                  (* m val-mandala-height)
                                                  (* k val-kusi-width))
                                           226
@@ -118,18 +119,17 @@
         img (js/Image.)
         _ (aset img "src" "img/sabong-pattern.svg")]
 
-    (canvas/add-entity
-     monet-canvas
-     :background
-     (canvas/entity
-      nil nil
+    (canvas/add-entity monet-canvas :background
+     (canvas/entity nil nil
       (fn [ctx val]
         (-> ctx
             (canvas/draw-image img {:x 0 :y 0 :w (* pos-pattern-width pattern-scale)
-                                              :h (* pos-pattern-height pattern-scale)})
+                                    :h (* pos-pattern-height pattern-scale)})
 
             (text-title title "30px" 0 -8.0)
-            (text (str "Cut Width: " val-cut-width ", Cut Height: " val-cut-height) 50.0 -8.0)
+            (text (str "Cut Width: " (h/num-pad val-cut-width)
+                       ", Cut Height: " (h/num-pad val-cut-height))
+                  50.0 -8.0)
 
             ;; buffer at the edges
             (text-num val-buffer-width 1.5 10.2)
@@ -138,6 +138,10 @@
             ;; border width
             (text-num val-border-width 6.0 10.2)
             (text-num val-border-width (- (- pos-pattern-width 7.5) 1) 10.2)
+
+            ;; border height
+            (text-num val-border-height 12.0 5.0)
+            (text-num val-border-height (- (- pos-pattern-width 7.5) 1) 5.0)
 
             ;; mandala width
             (text-mandala-width 0)
@@ -185,12 +189,13 @@
     ))
 
 (defn sabong-update [data]
-  (h/load-text :#sabong-guide-text :sabong-guide (fn [] (draw-sabong-pattern data))))
+  (h/render-markdown)
+  (draw-sabong-pattern data))
 
 (defn <content-sabong> [data]
   (r/create-class
    {:component-did-mount (fn [] (sabong-update data))
-    :component-will-update (fn [] (sabong-update data))
+    :component-did-update (fn [] (sabong-update data))
 
     :reagent-render
     (fn []
@@ -204,68 +209,128 @@
             [:a {:href "#sabong-pattern", :class "anchor", :aria-hidden "true"} "#"] "Pattern"]
 
            ;; Forms
-           [:form
-            [:div.form-group
-             [:label.form-label {:for "diagram_title"} "Title:"]
-             [:input.form-input {:id "diagram_title" :type "text"
-                                 :value (:title sabong)
-                                 :on-change (fn [e]
-                                              (do (swap! data assoc-in [:sabong :title] (.-target.value e))
-                                                  (draw-sabong-pattern data)))}]]]
-
            [:div.columns
-            [:div.col-4
-             [:form.form-horizontal
-              [:div.form-group
-               [:div.col-6
-                [:label.form-label {:for "robe_width"} "Width:"]]
-               [:div.col-6
-                [:input.form-input {:id "robe_width" :type "number"
-                                    :value (:width sabong)
-                                    :on-change (fn [e]
-                                                 (do (swap! data assoc-in [:sabong :width] (.-target.value e))
-                                                     (draw-sabong-pattern data)))}]]]
+            [:div.col-6
 
+             [:form
               [:div.form-group
-               [:div.col-6
-                [:label.form-label {:for "robe_height"} "Height:"]]
-               [:div.col-6
-                [:input.form-input {:id "robe_height" :type "number"
-                                    :value (:height sabong)
-                                    :on-change (fn [e]
-                                                 (do (swap! data assoc-in [:sabong :height] (.-target.value e))
-                                                     (draw-sabong-pattern data)))}]]]]]
+               [:label.form-label {:for "pattern_title"} "Title:"]
+               [:input.form-input {:id "pattern_title" :type "text"
+                                   :value (:title sabong)
+                                   :on-change (fn [e]
+                                                (do (swap! data assoc-in [:sabong :title] (.-target.value e))
+                                                    (draw-sabong-pattern data)))}]]]
 
-            [:div.col-8
-             [:form.form-horizontal
-              [:div.form-group
-               [:div.col-8
-                [:label.form-label {:for "shrinking_width_percent"} "Shrinking width percent:"]]
-               [:div.col-4
-                [:input.form-input {:id "shrinking_width_percent" :type "number"
-                                    :value 0
-                                    }]]]
+             [:div.columns
+              [:div.col-4
+               [:form.form-horizontal
 
-              [:div.form-group
-               [:div.col-8
-                [:label.form-label {:for "shrinking_height_percent"} "Shrinking height percent:"]]
-               [:div.col-4
-                [:input.form-input {:id "shrinking_height_percent" :type "number"
-                                    :value 0
-                                    }]]]]]]
+                [:div.form-group
+                 [:div.col-6
+                  [:label.form-label {:for "robe_width"} "Final width:"]]
+                 [:div.col-6
+                  [:input.form-input {:id "robe_width" :type "number"
+                                      :value (:width sabong)
+                                      :on-change (fn [e]
+                                                   (do (swap! data assoc-in [:sabong :width] (.-target.value e))
+                                                       (draw-sabong-pattern data)))}]]]
+
+                [:div.form-group
+                 [:div.col-6
+                  [:label.form-label {:for "robe_height"} "Final height:"]]
+                 [:div.col-6
+                  [:input.form-input {:id "robe_height" :type "number"
+                                      :value (:height sabong)
+                                      :on-change (fn [e]
+                                                   (do (swap! data assoc-in [:sabong :height] (.-target.value e))
+                                                       (draw-sabong-pattern data)))
+                                      }]]]]]
+
+              [:div.col-8
+               [:form.form-horizontal
+                [:div.form-group
+                 [:div.col-8
+                  [:label.form-label {:for "shrinking_width_percent"} "Shrinking width percent:"]]
+                 [:div.col-4
+                  [:input.form-input {:id "shrinking_width_percent" :type "number"
+                                      :value (:shrink-percent-width sabong)
+                                      :on-change (fn [e]
+                                                   (do (swap! data assoc-in [:sabong :shrink-percent-width] (.-target.value e))
+                                                       (draw-sabong-pattern data)))
+                                      }]]]
+
+                [:div.form-group
+                 [:div.col-8
+                  [:label.form-label {:for "shrinking_height_percent"} "Shrinking height percent:"]]
+                 [:div.col-4
+                  [:input.form-input {:id "shrinking_height_percent" :type "number"
+                                      :value (:shrink-percent-height sabong)
+                                      :on-change (fn [e]
+                                                   (do (swap! data assoc-in [:sabong :shrink-percent-height] (.-target.value e))
+                                                       (draw-sabong-pattern data)))
+                                      }]]]]
+               ]]
+
+             [:div.columns
+
+              [:div.col-4
+               [:form.form-horizontal
+                [:div.form-group
+                 [:div.col-6
+                  [:label.form-label {:for "kusi_width"} "Kusi:"]]
+                 [:div.col-6
+                  [:input.form-input {:id "kusi_width" :type "number"
+                                      :value (:kusi-width sabong)
+                                      :on-change (fn [e]
+                                                   (do (swap! data assoc-in [:sabong :kusi-width] (.-target.value e))
+                                                       (draw-sabong-pattern data)))}]]]]]
+
+              [:div.col-4
+               [:form.form-horizontal
+                [:div.form-group
+                 [:div.col-6
+                  [:label.form-label {:for "border_width"} "Border:"]]
+                 [:div.col-6
+                  [:input.form-input {:id "border_width" :type "number"
+                                      :value (:border-width sabong)
+                                      :on-change (fn [e]
+                                                   (do (swap! data assoc-in [:sabong :border-width] (.-target.value e))
+                                                       (draw-sabong-pattern data)))}]]]]]
+
+              [:div.col-4
+               [:form.form-horizontal
+                [:div.form-group
+                 [:div.col-6
+                  [:label.form-label {:for "buffer_width"} "Buffer:"]]
+                 [:div.col-6
+                  [:input.form-input {:id "buffer_width" :type "number"
+                                      :value (:buffer-width sabong)
+                                      :on-change (fn [e]
+                                                   (do (swap! data assoc-in [:sabong :buffer-width] (.-target.value e))
+                                                       (draw-sabong-pattern data)))}]]]]]
+
+              ]
+
+             [:div.docs-note
+              [:button.btn.btn-primary
+               {:on-click (fn [_] (h/download-pdf :#sabong-pattern-canvas
+                                                  (:title sabong)
+                                                  [15 15 15 15]))}
+               "Download PDF"]]]
+
+            [:div.col-1]
+
+            [:div.col-5
+
+             [:div.docs-note.render-markdown
+              (text :robe-size-note)]]]
            ;; end of Forms
-
-           [:div.docs-note
-            [:button.btn.btn-primary
-             {:on-click (fn [_] (h/download-pdf :#sabong-pattern-canvas
-                                                (:title sabong)
-                                                [15 15 15 15]))}
-             "Download PDF"]]
 
            [:canvas {:id "sabong-pattern-canvas" :width 1600 :height 1000}]]
 
           [:div.docs-note
            [:h5.s-title {:id "sabong-guide"}
             [:a {:href "#sabong-guide", :class "anchor", :aria-hidden "true"} "#"] "Guide"]
-           [:div#sabong-guide-text]]]
+           [:div.render-markdown
+            (text :sabong-guide)]]]
         ))}))

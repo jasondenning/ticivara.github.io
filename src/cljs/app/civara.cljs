@@ -7,12 +7,14 @@
    [app.helpers :as h]
    [app.text :refer [text]]))
 
+;; FIXME Cannot read property 'call' of undefined
+(defn civara-update [data]
+  (h/render-markdown))
+
 (defn <content-civara> [data]
   (r/create-class
-   {:component-did-mount
-    (fn [] (h/load-text :#civara-guide-text :civara-guide nil))
-    :component-will-update
-    (fn [] (h/load-text :#civara-guide-text :civara-guide nil))
+   {:component-did-mount (fn [] (civara-update data))
+    :component-did-update (fn [] (civara-update data))
 
     :reagent-render
     (fn []
@@ -30,6 +32,6 @@
          [:div.docs-note
           [:h5.s-title {:id "civara-guide"}
            [:a {:href "#civara-guide", :class "anchor", :aria-hidden "true"} "#"] "Guide"]
-          [:div#civara-guide-text]
-          ]])
-      )}))
+          [:div.render-markdown
+           (text :civara-guide)]]]
+        ))}))

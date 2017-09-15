@@ -68,10 +68,11 @@
 (defn mount-components []
   (r/render [#'<page>] (.getElementById js/document "app")))
 
+(defonce history
+  (hook-browser-navigation!))
+
 (defn main []
-  ;; FIXME
-  ;;(hook-browser-navigation!)
   (mount-components))
 
-(when-not (repl/alive?)
-  (repl/connect "ws://localhost:9001"))
+;;(when-not (repl/alive?)
+;;  (repl/connect "ws://localhost:9001"))

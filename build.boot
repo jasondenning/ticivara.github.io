@@ -10,6 +10,7 @@
                  [markdown-clj                "1.0.1"]
                  [prismatic/dommy             "1.1.0"]
                  [cljsjs/pdfmake              "0.1.26-0"]
+                 [funcool/decimal             "1.0.1"]
                  [adzerk/boot-cljs            "2.1.3"    :scope "test"]
                  [adzerk/boot-cljs-repl       "0.3.3"    :scope "test"]
                  [adzerk/boot-reload          "0.5.2"    :scope "test"]

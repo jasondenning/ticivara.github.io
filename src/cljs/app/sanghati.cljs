@@ -236,18 +236,20 @@
     ))
 
 (defn draw-sanghati-pattern [data]
+  (h/render-markdown)
   (draw-guide data)
   (draw-panels-1 data)
   (draw-panels-4 data)
   (draw-panels-7 data))
 
 (defn sanghati-update [data]
-  (h/load-text :#sanghati-guide-text :sanghati-guide (fn [] (draw-sanghati-pattern data))))
+  (h/render-markdown)
+  (draw-sanghati-pattern data))
 
 (defn <content-sanghati> [data]
   (r/create-class
    {:component-did-mount (fn [] (sanghati-update data))
-    :component-will-update (fn [] (sanghati-update data))
+    :component-did-update (fn [] (sanghati-update data))
 
     :reagent-render
     (fn []
@@ -261,68 +263,127 @@
         [:h5.s-title {:id "sanghati-pattern"}
          [:a {:href "#sanghati-pattern", :class "anchor", :aria-hidden "true"} "#"] "Pattern"]
 
-        ;; Forms
-        [:form
-         [:div.form-group
-          [:label.form-label {:for "pattern_title"} "Title:"]
-          [:input.form-input {:id "pattern_title" :type "text"
-                              :value (:title sanghati)
-                              :on-change (fn [e]
-                                           (do (swap! data assoc-in [:sanghati :title] (.-target.value e))
-                                               (draw-sanghati-pattern data)))}]]]
-
-        [:div.columns
-         [:div.col-4
-          [:form.form-horizontal
-           [:div.form-group
+           ;; Forms
+           [:div.columns
             [:div.col-6
-             [:label.form-label {:for "robe_width"} "Final width:"]]
-            [:div.col-6
-             [:input.form-input {:id "robe_width" :type "number"
-                                 :value (:width sanghati)
-                                 :on-change (fn [e]
-                                              (do (swap! data assoc-in [:sanghati :width] (.-target.value e))
-                                                  (draw-sanghati-pattern data)))}]]]
 
-           [:div.form-group
-            [:div.col-6
-             [:label.form-label {:for "robe_height"} "Final height:"]]
-            [:div.col-6
-             [:input.form-input {:id "robe_height" :type "number"
-                                 :value (:height sanghati)
-                                 :on-change (fn [e]
-                                              (do (swap! data assoc-in [:sanghati :height] (.-target.value e))
-                                                  (draw-sanghati-pattern data)))}]]]]]
+             [:form
+              [:div.form-group
+               [:label.form-label {:for "pattern_title"} "Title:"]
+               [:input.form-input {:id "pattern_title" :type "text"
+                                   :value (:title sanghati)
+                                   :on-change (fn [e]
+                                                (do (swap! data assoc-in [:sanghati :title] (.-target.value e))
+                                                    (draw-sanghati-pattern data)))}]]]
 
-         [:div.col-8
-          [:form.form-horizontal
-           [:div.form-group
-            [:div.col-8
-             [:label.form-label {:for "shrinking_width_percent"} "Shrinking width percent:"]]
-            [:div.col-4
-             [:input.form-input {:id "shrinking_width_percent" :type "number"
-                                 :value 0
-                                 }]]]
+             [:div.columns
+              [:div.col-4
+               [:form.form-horizontal
 
-           [:div.form-group
-            [:div.col-8
-             [:label.form-label {:for "shrinking_height_percent"} "Shrinking height percent:"]]
-            [:div.col-4
-             [:input.form-input {:id "shrinking_height_percent" :type "number"
-                                 :value 0
-                                 }]]]]]]
-        ;; end of Forms
+                [:div.form-group
+                 [:div.col-6
+                  [:label.form-label {:for "robe_width"} "Final width:"]]
+                 [:div.col-6
+                  [:input.form-input {:id "robe_width" :type "number"
+                                      :value (:width sanghati)
+                                      :on-change (fn [e]
+                                                   (do (swap! data assoc-in [:sanghati :width] (.-target.value e))
+                                                       (draw-sanghati-pattern data)))}]]]
 
-       [:div.docs-note
-        [:button.btn.btn-primary
-         {:on-click (fn [_] (h/download-pdf-fourpage
-                             [:#sanghati-guide-canvas
-                              :#sanghati-panels-1-2-3-canvas
-                              :#sanghati-panels-4-5-6-canvas
-                              :#sanghati-panels-7-8-9-canvas]
-                             (:title sanghati)
-                             [0 0 0 0]))}
-         "Download PDF"]]
+                [:div.form-group
+                 [:div.col-6
+                  [:label.form-label {:for "robe_height"} "Final height:"]]
+                 [:div.col-6
+                  [:input.form-input {:id "robe_height" :type "number"
+                                      :value (:height sanghati)
+                                      :on-change (fn [e]
+                                                   (do (swap! data assoc-in [:sanghati :height] (.-target.value e))
+                                                       (draw-sanghati-pattern data)))
+                                      }]]]]]
+
+              [:div.col-8
+               [:form.form-horizontal
+                [:div.form-group
+                 [:div.col-8
+                  [:label.form-label {:for "shrinking_width_percent"} "Shrinking width percent:"]]
+                 [:div.col-4
+                  [:input.form-input {:id "shrinking_width_percent" :type "number"
+                                      :value (:shrink-percent-width sanghati)
+                                      :on-change (fn [e]
+                                                   (do (swap! data assoc-in [:sanghati :shrink-percent-width] (.-target.value e))
+                                                       (draw-sanghati-pattern data)))
+                                      }]]]
+
+                [:div.form-group
+                 [:div.col-8
+                  [:label.form-label {:for "shrinking_height_percent"} "Shrinking height percent:"]]
+                 [:div.col-4
+                  [:input.form-input {:id "shrinking_height_percent" :type "number"
+                                      :value (:shrink-percent-height sanghati)
+                                      :on-change (fn [e]
+                                                   (do (swap! data assoc-in [:sanghati :shrink-percent-height] (.-target.value e))
+                                                       (draw-sanghati-pattern data)))
+                                      }]]]]
+               ]]
+
+             [:div.columns
+
+              [:div.col-4
+               [:form.form-horizontal
+                [:div.form-group
+                 [:div.col-6
+                  [:label.form-label {:for "kusi_width"} "Kusi:"]]
+                 [:div.col-6
+                  [:input.form-input {:id "kusi_width" :type "number"
+                                      :value (:kusi-width sanghati)
+                                      :on-change (fn [e]
+                                                   (do (swap! data assoc-in [:sanghati :kusi-width] (.-target.value e))
+                                                       (draw-sanghati-pattern data)))}]]]]]
+
+              [:div.col-4
+               [:form.form-horizontal
+                [:div.form-group
+                 [:div.col-6
+                  [:label.form-label {:for "border_width"} "Border:"]]
+                 [:div.col-6
+                  [:input.form-input {:id "border_width" :type "number"
+                                      :value (:border-width sanghati)
+                                      :on-change (fn [e]
+                                                   (do (swap! data assoc-in [:sanghati :border-width] (.-target.value e))
+                                                       (draw-sanghati-pattern data)))}]]]]]
+
+              [:div.col-4
+               [:form.form-horizontal
+                [:div.form-group
+                 [:div.col-6
+                  [:label.form-label {:for "buffer_width"} "Buffer:"]]
+                 [:div.col-6
+                  [:input.form-input {:id "buffer_width" :type "number"
+                                      :value (:buffer-width sanghati)
+                                      :on-change (fn [e]
+                                                   (do (swap! data assoc-in [:sanghati :buffer-width] (.-target.value e))
+                                                       (draw-sanghati-pattern data)))}]]]]]
+
+              ]
+
+             [:div.docs-note
+              [:button.btn.btn-primary
+               {:on-click (fn [_] (h/download-pdf-fourpage
+                                   [:#sanghati-guide-canvas
+                                    :#sanghati-panels-1-2-3-canvas
+                                    :#sanghati-panels-4-5-6-canvas
+                                    :#sanghati-panels-7-8-9-canvas]
+                                   (:title sanghati)
+                                   [0 0 0 0]))}
+               "Download PDF"]]]
+
+            [:div.col-1]
+
+            [:div.col-5
+
+             [:div.docs-note.render-markdown
+              (text :robe-size-note)]]]
+           ;; end of Forms
 
         [:canvas {:id "sanghati-guide-canvas" :width 3500 :height 2400 :style {:max-width "1600px"}}]
         [:canvas {:id "sanghati-panels-1-2-3-canvas" :width 3500 :height 2400 :style {:max-width "1600px"}}]
@@ -333,6 +394,7 @@
        [:div.docs-note
         [:h5.s-title {:id "sanghati-guide"}
          [:a {:href "#sanghati-guide", :class "anchor", :aria-hidden "true"} "#"] "Guide"]
-        [:div#sanghati-guide-text]
+        [:div.render-markdown
+         (text :sanghati-guide)]
         ]])
     )}))
