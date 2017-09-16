@@ -14,11 +14,8 @@ Enjoy your work!
 
 (def th-home-content-md "
 
-บางสิ่ง
-
-บางสิ่ง
-
-บางสิ่ง
+การคำนวน และแบบการตัดเย็บผ้าไตรจีวรจะอยูในส่วนนี้
+อยู่ในระหว่างการเขียน
 
 ")
 
@@ -28,7 +25,7 @@ TODO Later.
 
 
 (def th-sabong-guide-md "
-TODO บางสิ่ง
+TODO ผ้าสบง
 ")
 
 (def en-civara-guide-md "
@@ -36,7 +33,7 @@ TODO Later.
 ")
 
 (def th-civara-guide-md "
-TODO บางสิ่ง
+TODO ผ้าจีวร
 ")
 
 (def en-sanghati-guide-md "
@@ -44,7 +41,7 @@ TODO Later.
 ")
 
 (def th-sanghati-guide-md "
-TODO บางสิ่ง
+TODO ผ้าสังฆาฏิ
 ")
 
 (def en-robe-size-note-md "
@@ -61,11 +58,11 @@ will not accumulate errors from rounding.
 ")
 
 (def th-robe-size-note-md "
-บางสิ่ง
+ขนาดผ้าไตรจีวร ที่ต้องการ
 
-บางสิ่ง
+จะปรากฏตรงนี้
 
-บางสิ่ง
+ต้องรออับเดท
 ")
 
 (def en-borders-content-md "
@@ -73,7 +70,7 @@ TODO Later.
 ")
 
 (def th-borders-content-md "
-TODO บางสิ่ง
+TODO อนุวาต
 ")
 
 (def en-tools-content-md "
@@ -132,24 +129,24 @@ TODO บางสิ่ง
                        :borders-content th-borders-content-md
                        :tools-content th-tools-content-md
                        :home-content th-home-content-md
-                       :home "บางสิ่ง"
-                       :robe-sewing "บางสิ่ง"
-                       :sabong "บางสิ่ง"
-                       :civara "บางสิ่ง"
-                       :sanghati "บางสิ่ง"
-                       :borders "บางสิ่ง"
-                       :tools "บางสิ่ง"
-                       :pattern "บางสิ่ง"
-                       :download-pdf "บางสิ่ง"
-                       :guide "บางสิ่ง"
-                       :title "บางสิ่ง"
-                       :final-width "บางสิ่ง"
-                       :final-height "บางสิ่ง"
-                       :shrinking-width-percent "บางสิ่ง"
-                       :shrinking-height-percent "บางสิ่ง"
-                       :kusi "บางสิ่ง"
-                       :border "บางสิ่ง"
-                       :cutting-buffer "บางสิ่ง"
+                       :home "โปรแกรมคำนวณ"
+                       :robe-sewing "การตัดเย็บผ้าไตรจีวร"
+                       :sabong "สบง"
+                       :civara "จีวร"
+                       :sanghati "สังฆาฏิ"
+                       :borders "อนุวาต"
+                       :tools "เครื่องมือ"
+                       :pattern "แบบในการขีด"
+                       :download-pdf "ดาวน์โหลด PDF"
+                       :guide "คำอธิบาย"
+                       :title "หัวข้อ"
+                       :final-width "ความกว้างที่ต้องการ"
+                       :final-height "ความสูงที่ต้องการ"
+                       :shrinking-width-percent "เปอร์เซ็นต์การหดของผ้าด้านกว้าง"
+                       :shrinking-height-percent "เปอร์เซ็นต์การหดของผ้าด้านสูง"
+                       :kusi "ขนาดกุสิ"
+                       :border "ขนาดอนุวาต"
+                       :cutting-buffer "ขนาดเผื่อการตัดเย็บ"
                        }})
 
 (defn text [key]
