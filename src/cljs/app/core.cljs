@@ -17,7 +17,6 @@
    [app.helpers :as helpers]
    [app.routes :as routes]
    [app.elements :refer [<container>]]
-   [app.home :refer [<content-home>]]
    [app.sabong :refer [<content-sabong>]]
    [app.civara :refer [<content-civara>]]
    [app.sanghati :refer [<content-sanghati>]]
@@ -29,7 +28,7 @@
 ;; Pages
 
 (defn <page-home> []
-  (fn [] [<container> <content-home> state/state]))
+  (fn [] [<container> <content-page> state/state]))
 
 (defn <page-sabong> []
   (fn [] [<container> <content-sabong> state/state]))

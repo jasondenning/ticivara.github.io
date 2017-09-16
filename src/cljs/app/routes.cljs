@@ -13,6 +13,10 @@
   (swap! state/state assoc-in [:params :lang] (keyword lang))
   (session/put! :page :home))
 
+(secretary/defroute home-alt-path "/:lang/home" [lang]
+  (swap! state/state assoc-in [:params :lang] (keyword lang))
+  (session/put! :page :home))
+
 (secretary/defroute sabong-path "/:lang/sabong" [lang]
   (swap! state/state assoc-in [:params :lang] (keyword lang))
   (session/put! :page :sabong))

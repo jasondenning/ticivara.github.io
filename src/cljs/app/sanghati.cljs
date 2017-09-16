@@ -256,12 +256,10 @@
       (let [sanghati (:sanghati @data)]
 
       [:div.container {:id "sanghati"}
-       [:h3.s-title
-        [:a {:href "#sanghati", :class "anchor", :aria-hidden "true"} "#"] (text :sanghati)]
+       [:h3.s-title (text :sanghati)]
 
        [:div.docs-note
-        [:h5.s-title {:id "sanghati-pattern"}
-         [:a {:href "#sanghati-pattern", :class "anchor", :aria-hidden "true"} "#"] "Pattern"]
+        [:h5.s-title {:id "sanghati-pattern"} "Pattern"]
 
            ;; Forms
            [:div.columns
@@ -392,8 +390,7 @@
        ]
 
        [:div.docs-note
-        [:h5.s-title {:id "sanghati-guide"}
-         [:a {:href "#sanghati-guide", :class "anchor", :aria-hidden "true"} "#"] "Guide"]
+        [:h5.s-title {:id "sanghati-guide"} "Guide"]
         [:div.render-markdown
          (text :sanghati-guide)]
         ]])

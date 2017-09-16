@@ -22,16 +22,13 @@
             _ (:lang (:params @data))]
 
         [:div.container {:id "civara"}
-         [:h3.s-title
-          [:a {:href "#civara", :class "anchor", :aria-hidden "true"} "#"] (text :civara)]
+         [:h3.s-title (text :civara)]
          [:div.docs-note
-          [:h5.s-title {:id "civara-pattern"}
-           [:a {:href "#civara-pattern", :class "anchor", :aria-hidden "true"} "#"] (text :pattern)]
+          [:h5.s-title {:id "civara-pattern"} (text :pattern)]
           [:p "..."]]
 
          [:div.docs-note
-          [:h5.s-title {:id "civara-guide"}
-           [:a {:href "#civara-guide", :class "anchor", :aria-hidden "true"} "#"] (text :guide)]
+          [:h5.s-title {:id "civara-guide"} (text :guide)]
           [:div.render-markdown
            (text :civara-guide)]]]
         ))}))

@@ -218,11 +218,9 @@
       (let [sabong (:sabong @data)]
 
          [:div.container {:id "sabong"}
-          [:h3.s-title
-           [:a {:href "#sabong", :class "anchor", :aria-hidden "true"} "#"] (text :sabong)]
+          [:h3.s-title (text :sabong)]
           [:div.docs-note
-           [:h5.s-title {:id "sabong-pattern"}
-            [:a {:href "#sabong-pattern", :class "anchor", :aria-hidden "true"} "#"] (text :pattern)]
+           [:h5.s-title {:id "sabong-pattern"} (text :pattern)]
 
            ;; Forms
            [:div.columns
@@ -345,8 +343,7 @@
            [:canvas.pattern {:id "sabong-pattern-canvas" :width 3500 :height 2400}]]
 
           [:div.docs-note
-           [:h5.s-title {:id "sabong-guide"}
-            [:a {:href "#sabong-guide", :class "anchor", :aria-hidden "true"} "#"] (text :guide)]
+           [:h5.s-title {:id "sabong-guide"} (text :guide)]
            [:div.render-markdown
             (text :sabong-guide)]]]
         ))}))

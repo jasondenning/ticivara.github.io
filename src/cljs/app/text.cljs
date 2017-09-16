@@ -1,47 +1,50 @@
 (ns app.text
   (:require [app.state :as state]))
 
+(def en-home-content-md "
+
+This is a calculating tool and instruction guide for sewing robes.
+
+As you will see it is very much work-in-progress, but the [Sabong](/#/en/sabong)
+pattern is ready to use.
+
+Enjoy your work!
+
+")
+
+(def th-home-content-md "
+
+บางสิ่ง
+
+บางสิ่ง
+
+บางสิ่ง
+
+")
+
 (def en-sabong-guide-md "
-The *sabong* has **five** khandakas.
-
-#### Drawing
-
-| mark | description |
-| --- | --- |
-| *b* | border |
-| *k* | kusi |
-| *m* | mandala width |
-| *d* | mandala height |
-
-#### Cutting
-
-- one
-- two
-- three
-
-Just like that.
-
+TODO Later.
 ")
 
 
 (def th-sabong-guide-md "
-เพียงเป้นการทดลองว่าพิมพ์ตรงนี้มันจะออกไปตรงไหน
+TODO บางสิ่ง
 ")
 
 (def en-civara-guide-md "
-Hello Civara
+TODO Later.
 ")
 
 (def th-civara-guide-md "
-จีวร ผ้าที่เหมาะต่อการตัดจีวรควรเป็นผ้าไม่หนามาก เช่นผ้าป่านมัสลิน ผ้าลีนิน หรือป่านอินเดียเป็นต้น
+TODO บางสิ่ง
 ")
 
 (def en-sanghati-guide-md "
-Hello Sanghati
+TODO Later.
 ")
 
 (def th-sanghati-guide-md "
-สังฆาฎิ ผ้าที่เหมาะแต่การตัดสังฆาฏิควรเป็นผ้าบาง เช่นป่านอินเดีย ป่านมัสลิน ผ้าลีนิน ป่านอินเดียจะเป็นผ้าที่บางมากตัดเป็นสังฆาฏิแล้วจะหนาเท่ากับจีวรที่ตัดด้วยผ้าป่านมัสลิน
+TODO บางสิ่ง
 ")
 
 (def en-robe-size-note-md "
@@ -101,6 +104,8 @@ TODO บางสิ่ง
                        :robe-size-note en-robe-size-note-md
                        :borders-content en-borders-content-md
                        :tools-content en-tools-content-md
+                       :home-content en-home-content-md
+                       :home "Home"
                        :robe-sewing "Robe Sewing"
                        :sabong "Sabong"
                        :civara "Civara"
@@ -126,6 +131,8 @@ TODO บางสิ่ง
                        :robe-size-note th-robe-size-note-md
                        :borders-content th-borders-content-md
                        :tools-content th-tools-content-md
+                       :home-content th-home-content-md
+                       :home "บางสิ่ง"
                        :robe-sewing "บางสิ่ง"
                        :sabong "บางสิ่ง"
                        :civara "บางสิ่ง"
