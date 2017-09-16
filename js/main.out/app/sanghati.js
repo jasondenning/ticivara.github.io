@@ -20,11 +20,11 @@ var pos_mandala_width = 31.0;
 var pos_mandala_height = 58.0;
 var pattern_scale = 11.3;
 var val_buffer_width = pos_buffer_width;
-var val_inner_width = (function (){var G__18492 = cljs.core.cst$kw$width.cljs$core$IFn$_invoke$arity$1(sanghati);
-return Number(G__18492);
+var val_inner_width = (function (){var G__18490 = cljs.core.cst$kw$width.cljs$core$IFn$_invoke$arity$1(sanghati);
+return Number(G__18490);
 })();
-var val_inner_height = (function (){var G__18493 = cljs.core.cst$kw$height.cljs$core$IFn$_invoke$arity$1(sanghati);
-return Number(G__18493);
+var val_inner_height = (function (){var G__18491 = cljs.core.cst$kw$height.cljs$core$IFn$_invoke$arity$1(sanghati);
+return Number(G__18491);
 })();
 var val_cut_width = (val_inner_width + ((2) * val_buffer_width));
 var val_cut_height = (val_inner_height + ((2) * val_buffer_width));
@@ -61,13 +61,13 @@ return (function (ctx,s,x,y){
 return text(ctx,app.helpers.num_pad(s),x,y);
 });})(sanghati,title,pos_pattern_width,pos_pattern_height,pos_buffer_width,pos_border_width,pos_kusi_width,pos_mandala_width,pos_mandala_height,pattern_scale,val_buffer_width,val_inner_width,val_inner_height,val_cut_width,val_cut_height,val_border_width,val_kusi_width,val_mandala_width,val_mandala_height,text,text_title))
 ;
-var vec__18489 = app.helpers.init_canvas(cljs.core.cst$kw$_SHARP_sanghati_DASH_guide_DASH_canvas,"img/sanghati-guide.svg");
-var canvas_guide = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18489,(0),null);
-var img_guide = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18489,(1),null);
-return monet.canvas.add_entity(canvas_guide,cljs.core.cst$kw$background,monet.canvas.entity(null,null,((function (sanghati,title,pos_pattern_width,pos_pattern_height,pos_buffer_width,pos_border_width,pos_kusi_width,pos_mandala_width,pos_mandala_height,pattern_scale,val_buffer_width,val_inner_width,val_inner_height,val_cut_width,val_cut_height,val_border_width,val_kusi_width,val_mandala_width,val_mandala_height,text,text_title,text_num,vec__18489,canvas_guide,img_guide){
+var vec__18487 = app.helpers.init_canvas(cljs.core.cst$kw$_SHARP_sanghati_DASH_guide_DASH_canvas,"img/sanghati-guide.svg");
+var canvas_guide = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18487,(0),null);
+var img_guide = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18487,(1),null);
+return monet.canvas.add_entity(canvas_guide,cljs.core.cst$kw$background,monet.canvas.entity(null,null,((function (sanghati,title,pos_pattern_width,pos_pattern_height,pos_buffer_width,pos_border_width,pos_kusi_width,pos_mandala_width,pos_mandala_height,pattern_scale,val_buffer_width,val_inner_width,val_inner_height,val_cut_width,val_cut_height,val_border_width,val_kusi_width,val_mandala_width,val_mandala_height,text,text_title,text_num,vec__18487,canvas_guide,img_guide){
 return (function (ctx,val){
 return text(text(text(text(text_title(monet.canvas.draw_image.cljs$core$IFn$_invoke$arity$3(ctx,img_guide,new cljs.core.PersistentArrayMap(null, 4, [cljs.core.cst$kw$x,(0),cljs.core.cst$kw$y,(0),cljs.core.cst$kw$w,(pos_pattern_width * pattern_scale),cljs.core.cst$kw$h,(pos_pattern_height * pattern_scale)], null)),title,"150px",(20),(20)),["Final width: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(val_inner_width)].join(''),(20),45.0),["Final height: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(val_inner_height)].join(''),(20),49.0),["Cut width: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(val_cut_width)].join(''),(20),54.0),["Cut height: ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(val_cut_height)].join(''),(20),58.0);
-});})(sanghati,title,pos_pattern_width,pos_pattern_height,pos_buffer_width,pos_border_width,pos_kusi_width,pos_mandala_width,pos_mandala_height,pattern_scale,val_buffer_width,val_inner_width,val_inner_height,val_cut_width,val_cut_height,val_border_width,val_kusi_width,val_mandala_width,val_mandala_height,text,text_title,text_num,vec__18489,canvas_guide,img_guide))
+});})(sanghati,title,pos_pattern_width,pos_pattern_height,pos_buffer_width,pos_border_width,pos_kusi_width,pos_mandala_width,pos_mandala_height,pattern_scale,val_buffer_width,val_inner_width,val_inner_height,val_cut_width,val_cut_height,val_border_width,val_kusi_width,val_mandala_width,val_mandala_height,text,text_title,text_num,vec__18487,canvas_guide,img_guide))
 ));
 });
 app.sanghati.draw_panels_1 = (function app$sanghati$draw_panels_1(data){
@@ -109,13 +109,13 @@ return (function (ctx,s,x,y){
 return text(ctx,app.helpers.num_pad(s),x,y);
 });})(sanghati,title,pos_pattern_width,pos_pattern_height,pos_img_offset_x,pos_img_offset_y,pos_text_offset_x,pos_text_offset_y,pattern_scale,text,text_title))
 ;
-var vec__18494 = app.helpers.init_canvas(cljs.core.cst$kw$_SHARP_sanghati_DASH_panels_DASH_1_DASH_2_DASH_3_DASH_canvas,"img/sanghati-panels-1-2-3.svg");
-var canvas_panels_1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18494,(0),null);
-var img_1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18494,(1),null);
-return monet.canvas.add_entity(canvas_panels_1,cljs.core.cst$kw$background,monet.canvas.entity(null,null,((function (sanghati,title,pos_pattern_width,pos_pattern_height,pos_img_offset_x,pos_img_offset_y,pos_text_offset_x,pos_text_offset_y,pattern_scale,text,text_title,text_num,vec__18494,canvas_panels_1,img_1){
+var vec__18492 = app.helpers.init_canvas(cljs.core.cst$kw$_SHARP_sanghati_DASH_panels_DASH_1_DASH_2_DASH_3_DASH_canvas,"img/sanghati-panels-1-2-3.svg");
+var canvas_panels_1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18492,(0),null);
+var img_1 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18492,(1),null);
+return monet.canvas.add_entity(canvas_panels_1,cljs.core.cst$kw$background,monet.canvas.entity(null,null,((function (sanghati,title,pos_pattern_width,pos_pattern_height,pos_img_offset_x,pos_img_offset_y,pos_text_offset_x,pos_text_offset_y,pattern_scale,text,text_title,text_num,vec__18492,canvas_panels_1,img_1){
 return (function (ctx,val){
 return monet.canvas.draw_image.cljs$core$IFn$_invoke$arity$3(ctx,img_1,new cljs.core.PersistentArrayMap(null, 4, [cljs.core.cst$kw$x,(pos_img_offset_x * pattern_scale),cljs.core.cst$kw$y,(pos_img_offset_y * pattern_scale),cljs.core.cst$kw$w,(pos_pattern_width * pattern_scale),cljs.core.cst$kw$h,(pos_pattern_height * pattern_scale)], null));
-});})(sanghati,title,pos_pattern_width,pos_pattern_height,pos_img_offset_x,pos_img_offset_y,pos_text_offset_x,pos_text_offset_y,pattern_scale,text,text_title,text_num,vec__18494,canvas_panels_1,img_1))
+});})(sanghati,title,pos_pattern_width,pos_pattern_height,pos_img_offset_x,pos_img_offset_y,pos_text_offset_x,pos_text_offset_y,pattern_scale,text,text_title,text_num,vec__18492,canvas_panels_1,img_1))
 ));
 });
 app.sanghati.draw_panels_4 = (function app$sanghati$draw_panels_4(data){
@@ -157,13 +157,13 @@ return (function (ctx,s,x,y){
 return text(ctx,app.helpers.num_pad(s),x,y);
 });})(sanghati,title,pos_pattern_width,pos_pattern_height,pos_img_offset_x,pos_img_offset_y,pos_text_offset_x,pos_text_offset_y,pattern_scale,text,text_title))
 ;
-var vec__18497 = app.helpers.init_canvas(cljs.core.cst$kw$_SHARP_sanghati_DASH_panels_DASH_4_DASH_5_DASH_6_DASH_canvas,"img/sanghati-panels-4-5-6.svg");
-var canvas_panels_4 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18497,(0),null);
-var img_4 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18497,(1),null);
-return monet.canvas.add_entity(canvas_panels_4,cljs.core.cst$kw$background,monet.canvas.entity(null,null,((function (sanghati,title,pos_pattern_width,pos_pattern_height,pos_img_offset_x,pos_img_offset_y,pos_text_offset_x,pos_text_offset_y,pattern_scale,text,text_title,text_num,vec__18497,canvas_panels_4,img_4){
+var vec__18495 = app.helpers.init_canvas(cljs.core.cst$kw$_SHARP_sanghati_DASH_panels_DASH_4_DASH_5_DASH_6_DASH_canvas,"img/sanghati-panels-4-5-6.svg");
+var canvas_panels_4 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18495,(0),null);
+var img_4 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18495,(1),null);
+return monet.canvas.add_entity(canvas_panels_4,cljs.core.cst$kw$background,monet.canvas.entity(null,null,((function (sanghati,title,pos_pattern_width,pos_pattern_height,pos_img_offset_x,pos_img_offset_y,pos_text_offset_x,pos_text_offset_y,pattern_scale,text,text_title,text_num,vec__18495,canvas_panels_4,img_4){
 return (function (ctx,val){
 return monet.canvas.draw_image.cljs$core$IFn$_invoke$arity$3(ctx,img_4,new cljs.core.PersistentArrayMap(null, 4, [cljs.core.cst$kw$x,(pos_img_offset_x * pattern_scale),cljs.core.cst$kw$y,(pos_img_offset_y * pattern_scale),cljs.core.cst$kw$w,(pos_pattern_width * pattern_scale),cljs.core.cst$kw$h,(pos_pattern_height * pattern_scale)], null));
-});})(sanghati,title,pos_pattern_width,pos_pattern_height,pos_img_offset_x,pos_img_offset_y,pos_text_offset_x,pos_text_offset_y,pattern_scale,text,text_title,text_num,vec__18497,canvas_panels_4,img_4))
+});})(sanghati,title,pos_pattern_width,pos_pattern_height,pos_img_offset_x,pos_img_offset_y,pos_text_offset_x,pos_text_offset_y,pattern_scale,text,text_title,text_num,vec__18495,canvas_panels_4,img_4))
 ));
 });
 app.sanghati.draw_panels_7 = (function app$sanghati$draw_panels_7(data){
@@ -205,13 +205,13 @@ return (function (ctx,s,x,y){
 return text(ctx,app.helpers.num_pad(s),x,y);
 });})(sanghati,title,pos_pattern_width,pos_pattern_height,pos_img_offset_x,pos_img_offset_y,pos_text_offset_x,pos_text_offset_y,pattern_scale,text,text_title))
 ;
-var vec__18500 = app.helpers.init_canvas(cljs.core.cst$kw$_SHARP_sanghati_DASH_panels_DASH_7_DASH_8_DASH_9_DASH_canvas,"img/sanghati-panels-7-8-9.svg");
-var canvas_panels_7 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18500,(0),null);
-var img_7 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18500,(1),null);
-return monet.canvas.add_entity(canvas_panels_7,cljs.core.cst$kw$background,monet.canvas.entity(null,null,((function (sanghati,title,pos_pattern_width,pos_pattern_height,pos_img_offset_x,pos_img_offset_y,pos_text_offset_x,pos_text_offset_y,pattern_scale,text,text_title,text_num,vec__18500,canvas_panels_7,img_7){
+var vec__18498 = app.helpers.init_canvas(cljs.core.cst$kw$_SHARP_sanghati_DASH_panels_DASH_7_DASH_8_DASH_9_DASH_canvas,"img/sanghati-panels-7-8-9.svg");
+var canvas_panels_7 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18498,(0),null);
+var img_7 = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18498,(1),null);
+return monet.canvas.add_entity(canvas_panels_7,cljs.core.cst$kw$background,monet.canvas.entity(null,null,((function (sanghati,title,pos_pattern_width,pos_pattern_height,pos_img_offset_x,pos_img_offset_y,pos_text_offset_x,pos_text_offset_y,pattern_scale,text,text_title,text_num,vec__18498,canvas_panels_7,img_7){
 return (function (ctx,val){
 return monet.canvas.draw_image.cljs$core$IFn$_invoke$arity$3(ctx,img_7,new cljs.core.PersistentArrayMap(null, 4, [cljs.core.cst$kw$x,(pos_img_offset_x * pattern_scale),cljs.core.cst$kw$y,(pos_img_offset_y * pattern_scale),cljs.core.cst$kw$w,(pos_pattern_width * pattern_scale),cljs.core.cst$kw$h,(pos_pattern_height * pattern_scale)], null));
-});})(sanghati,title,pos_pattern_width,pos_pattern_height,pos_img_offset_x,pos_img_offset_y,pos_text_offset_x,pos_text_offset_y,pattern_scale,text,text_title,text_num,vec__18500,canvas_panels_7,img_7))
+});})(sanghati,title,pos_pattern_width,pos_pattern_height,pos_img_offset_x,pos_img_offset_y,pos_text_offset_x,pos_text_offset_y,pattern_scale,text,text_title,text_num,vec__18498,canvas_panels_7,img_7))
 ));
 });
 app.sanghati.draw_sanghati_pattern = (function app$sanghati$draw_sanghati_pattern(data){
@@ -237,7 +237,7 @@ return app.sanghati.sanghati_update(data);
 return app.sanghati.sanghati_update(data);
 }),cljs.core.cst$kw$reagent_DASH_render,(function (){
 var sanghati = cljs.core.cst$kw$sanghati.cljs$core$IFn$_invoke$arity$1(cljs.core.deref(data));
-return new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$container,new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$id,"sanghati"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$h3$s_DASH_title,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$a,new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$href,"#sanghati",cljs.core.cst$kw$class,"anchor",cljs.core.cst$kw$aria_DASH_hidden,"true"], null),"#"], null),app.text.text(cljs.core.cst$kw$sanghati)], null),new cljs.core.PersistentVector(null, 7, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$docs_DASH_note,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$h5$s_DASH_title,new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$id,"sanghati-pattern"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$a,new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$href,"#sanghati-pattern",cljs.core.cst$kw$class,"anchor",cljs.core.cst$kw$aria_DASH_hidden,"true"], null),"#"], null),"Pattern"], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$columns,new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$col_DASH_6,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$form,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$form_DASH_group,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$label$form_DASH_label,new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$for,"pattern_title"], null),"Title:"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$input$form_DASH_input,new cljs.core.PersistentArrayMap(null, 4, [cljs.core.cst$kw$id,"pattern_title",cljs.core.cst$kw$type,"text",cljs.core.cst$kw$value,cljs.core.cst$kw$title.cljs$core$IFn$_invoke$arity$1(sanghati),cljs.core.cst$kw$on_DASH_change,((function (sanghati){
+return new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$container,new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$id,"sanghati"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$h3$s_DASH_title,app.text.text(cljs.core.cst$kw$sanghati)], null),new cljs.core.PersistentVector(null, 7, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$docs_DASH_note,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$h5$s_DASH_title,new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$id,"sanghati-pattern"], null),"Pattern"], null),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$columns,new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$col_DASH_6,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$form,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$form_DASH_group,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$label$form_DASH_label,new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$for,"pattern_title"], null),"Title:"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$input$form_DASH_input,new cljs.core.PersistentArrayMap(null, 4, [cljs.core.cst$kw$id,"pattern_title",cljs.core.cst$kw$type,"text",cljs.core.cst$kw$value,cljs.core.cst$kw$title.cljs$core$IFn$_invoke$arity$1(sanghati),cljs.core.cst$kw$on_DASH_change,((function (sanghati){
 return (function (e){
 cljs.core.swap_BANG_.cljs$core$IFn$_invoke$arity$4(data,cljs.core.assoc_in,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$sanghati,cljs.core.cst$kw$title], null),e.target.value);
 
@@ -289,6 +289,6 @@ return app.sanghati.draw_sanghati_pattern(data);
 return (function (_){
 return app.helpers.download_pdf_fourpage(new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$_SHARP_sanghati_DASH_guide_DASH_canvas,cljs.core.cst$kw$_SHARP_sanghati_DASH_panels_DASH_1_DASH_2_DASH_3_DASH_canvas,cljs.core.cst$kw$_SHARP_sanghati_DASH_panels_DASH_4_DASH_5_DASH_6_DASH_canvas,cljs.core.cst$kw$_SHARP_sanghati_DASH_panels_DASH_7_DASH_8_DASH_9_DASH_canvas], null),cljs.core.cst$kw$title.cljs$core$IFn$_invoke$arity$1(sanghati),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(0),(0),(0)], null));
 });})(sanghati))
-], null),"Download PDF"], null)], null)], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$col_DASH_1], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$col_DASH_5,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$docs_DASH_note$render_DASH_markdown,app.text.text(cljs.core.cst$kw$robe_DASH_size_DASH_note)], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$canvas$pattern,new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$id,"sanghati-guide-canvas",cljs.core.cst$kw$width,(3500),cljs.core.cst$kw$height,(2400)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$canvas$pattern,new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$id,"sanghati-panels-1-2-3-canvas",cljs.core.cst$kw$width,(3500),cljs.core.cst$kw$height,(2400)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$canvas$pattern,new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$id,"sanghati-panels-4-5-6-canvas",cljs.core.cst$kw$width,(3500),cljs.core.cst$kw$height,(2400)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$canvas$pattern,new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$id,"sanghati-panels-7-8-9-canvas",cljs.core.cst$kw$width,(3500),cljs.core.cst$kw$height,(2400)], null)], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$docs_DASH_note,new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$h5$s_DASH_title,new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$id,"sanghati-guide"], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$a,new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$href,"#sanghati-guide",cljs.core.cst$kw$class,"anchor",cljs.core.cst$kw$aria_DASH_hidden,"true"], null),"#"], null),"Guide"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$render_DASH_markdown,app.text.text(cljs.core.cst$kw$sanghati_DASH_guide)], null)], null)], null);
+], null),"Download PDF"], null)], null)], null),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$col_DASH_1], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$col_DASH_5,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$docs_DASH_note$render_DASH_markdown,app.text.text(cljs.core.cst$kw$robe_DASH_size_DASH_note)], null)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$canvas$pattern,new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$id,"sanghati-guide-canvas",cljs.core.cst$kw$width,(3500),cljs.core.cst$kw$height,(2400)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$canvas$pattern,new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$id,"sanghati-panels-1-2-3-canvas",cljs.core.cst$kw$width,(3500),cljs.core.cst$kw$height,(2400)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$canvas$pattern,new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$id,"sanghati-panels-4-5-6-canvas",cljs.core.cst$kw$width,(3500),cljs.core.cst$kw$height,(2400)], null)], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$canvas$pattern,new cljs.core.PersistentArrayMap(null, 3, [cljs.core.cst$kw$id,"sanghati-panels-7-8-9-canvas",cljs.core.cst$kw$width,(3500),cljs.core.cst$kw$height,(2400)], null)], null)], null),new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$docs_DASH_note,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$h5$s_DASH_title,new cljs.core.PersistentArrayMap(null, 1, [cljs.core.cst$kw$id,"sanghati-guide"], null),"Guide"], null),new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.cst$kw$div$render_DASH_markdown,app.text.text(cljs.core.cst$kw$sanghati_DASH_guide)], null)], null)], null);
 })], null));
 });
