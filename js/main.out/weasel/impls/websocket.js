@@ -31,8 +31,8 @@ throw cljs.core.missing_protocol("IWebSocket.open?",this$);
 });
 
 weasel.impls.websocket.websocket_connection = (function weasel$impls$websocket$websocket_connection(var_args){
-var G__17843 = arguments.length;
-switch (G__17843) {
+var G__18339 = arguments.length;
+switch (G__18339) {
 case 0:
 return weasel.impls.websocket.websocket_connection.cljs$core$IFn$_invoke$arity$0();
 
@@ -99,10 +99,10 @@ goog.net.WebSocket.prototype.clojure$browser$event$IEventType$ = cljs.core.PROTO
 goog.net.WebSocket.prototype.clojure$browser$event$IEventType$event_types$arity$1 = (function (this$){
 var this$__$1 = this;
 return cljs.core.into.cljs$core$IFn$_invoke$arity$2(cljs.core.PersistentArrayMap.EMPTY,cljs.core.map.cljs$core$IFn$_invoke$arity$2(((function (this$__$1){
-return (function (p__17845){
-var vec__17846 = p__17845;
-var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__17846,(0),null);
-var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__17846,(1),null);
+return (function (p__18341){
+var vec__18342 = p__18341;
+var k = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18342,(0),null);
+var v = cljs.core.nth.cljs$core$IFn$_invoke$arity$3(vec__18342,(1),null);
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.keyword.cljs$core$IFn$_invoke$arity$1(k.toLowerCase()),v], null);
 });})(this$__$1))
 ,cljs.core.merge.cljs$core$IFn$_invoke$arity$variadic(cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([cljs.core.js__GT_clj.cljs$core$IFn$_invoke$arity$1(goog.net.WebSocket.EventType)], 0))));
