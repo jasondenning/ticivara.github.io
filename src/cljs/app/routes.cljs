@@ -25,6 +25,14 @@
   (swap! state/state assoc-in [:params :lang] (keyword lang))
   (session/put! :page :sanghati))
 
+(secretary/defroute borders-path "/:lang/borders" [lang]
+  (swap! state/state assoc-in [:params :lang] (keyword lang))
+  (session/put! :page :borders))
+
+(secretary/defroute tools-path "/:lang/tools" [lang]
+  (swap! state/state assoc-in [:params :lang] (keyword lang))
+  (session/put! :page :tools))
+
 ;; === Default path ===
 
 (secretary/defroute default-path "*" []

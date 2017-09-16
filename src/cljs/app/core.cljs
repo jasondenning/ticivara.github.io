@@ -13,14 +13,15 @@
    [goog.history.EventType :as HistoryEventType]
    ;; app
    [app.state :as state]
-   [app.text :as text]
+   [app.text :refer [text]]
    [app.helpers :as helpers]
    [app.routes :as routes]
    [app.elements :refer [<container>]]
    [app.home :refer [<content-home>]]
    [app.sabong :refer [<content-sabong>]]
    [app.civara :refer [<content-civara>]]
-   [app.sanghati :refer [<content-sanghati>]])
+   [app.sanghati :refer [<content-sanghati>]]
+   [app.content-page :refer [<content-page>]])
   ;; history for routing
   (:import goog.History))
 
@@ -39,11 +40,19 @@
 (defn <page-sanghati> []
   (fn [] [<container> <content-sanghati> state/state]))
 
+(defn <page-borders> []
+  (fn [] [<container> <content-page> state/state]))
+
+(defn <page-tools> []
+  (fn [] [<container> <content-page> state/state]))
+
 (def pages
   {:home #'<page-home>
    :sabong #'<page-sabong>
    :civara #'<page-civara>
    :sanghati #'<page-sanghati>
+   :borders #'<page-borders>
+   :tools #'<page-tools>
    })
 
 (defn get-pagekey []

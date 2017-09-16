@@ -1,6 +1,8 @@
-(ns app.elements)
+(ns app.elements
+  (:require
+   [app.helpers :as h]))
 
-(declare <sidebar> <navbar> <footer> <container>)
+(declare <sidebar> <navbar> <footer> <container> <lang-links>)
 
 (defn <container> [content data]
   (fn []
@@ -21,39 +23,26 @@
 (defn <sidebar> []
   [:div {:id "sidebar", :class "s-sidebar"}
    [:div.s-brand
-    [:a {:href "index.html", :class "s-logo"}
+    [:a {:href "https://ticivara.github.io/"} "ticivara.github.io"]
+    [:br]
+    [:a {:href "index.html"}
      #_[:img {:src "img/spectre-logo.svg", :alt "Spectre.css CSS Framework"}]
      [:h2  "Robe Sewing"] ] ]
    [:div.s-nav
-    [:div.accordion
-     [:div.accordion-item
-      [:input {:type "checkbox", :id "docs-accordion-1", :name "docs-accordion-checkbox", :hidden "true"}]
-      [:label {:class "accordion-header c-hand", :for "docs-accordion-1"} "Sabong"]
-      [:div.accordion-body
-       [:ul.menu.menu-nav
-        [:li.menu-item
-         [:a {:href "#/en/sabong"} "EN"]]
-        [:li.menu-item
-         [:a {:href "#/th/sabong"} "TH"]]]]]
-     [:div.accordion-item
-      [:input {:type "checkbox", :id "docs-accordion-2", :name "docs-accordion-checkbox", :hidden "true"}]
-      [:label {:class "accordion-header c-hand", :for "docs-accordion-2"} "Civara"]
-      [:div.accordion-body
-       [:ul.menu.menu-nav
-        [:li.menu-item
-         [:a {:href "#/en/civara"} "EN"]]
-        [:li.menu-item
-         [:a {:href "#/th/civara"} "TH"]]]]]
-     [:div.accordion-item
-      [:input {:type "checkbox", :id "docs-accordion-3", :name "docs-accordion-checkbox", :hidden "true"}]
-      [:label {:class "accordion-header c-hand", :for "docs-accordion-3"} "Sanghati"]
-      [:div.accordion-body
-       [:ul.menu.menu-nav
-        [:li.menu-item
-         [:a {:href "#/en/sanghati"} "EN"]]
-        [:li.menu-item
-         [:a {:href "#/th/sanghati"} "TH"]]]]]
-     ]]])
+    [:ul.menu.menu-nav
+     [:li.menu-item
+      [:a {:href (h/href-to "sabong")} "Sabong"]]
+     [:li.menu-item
+      [:a {:href (h/href-to "civara")} "Civara"]]
+     [:li.menu-item
+      [:a {:href (h/href-to "sanghati")} "Sanghati"]]
+     [:li.menu-item
+      [:a {:href (h/href-to "borders")} "Borders"]]
+     [:li.menu-item
+      [:a {:href (h/href-to "tools")} "Tools"]]
+     [:li.menu-item
+      [<lang-links>]]]]
+   ])
 
 (defn <navbar> []
   [:div.s-navbar
@@ -67,3 +56,14 @@
 
 (defn <footer> []
   [:footer.s-footer])
+
+(defn <lang-links> []
+  (fn []
+    (let [s (h/this-page-str)]
+      [:div.flag-links
+       [:img {:src "/img/flag-united-kingdom.png"
+              :on-click (fn [_] (h/nav! (str "/en/" s)))}]
+
+       [:img {:src "/img/flag-thailand.png"
+              :on-click (fn [_] (h/nav! (str "/th/" s)))}]
+       ])))

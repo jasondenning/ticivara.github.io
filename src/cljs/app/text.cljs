@@ -65,15 +65,51 @@ will not accumulate errors from rounding.
 บางสิ่ง
 ")
 
+(def en-borders-content-md "
+TODO Later.
+")
+
+(def th-borders-content-md "
+TODO บางสิ่ง
+")
+
+(def en-tools-content-md "
+
+#### Checklist before sewing
+
+- thread
+- sewing machine condition
+- extra machine needle in case it breaks
+- large, sharp scissors
+- tape measure
+- long straight edge
+- ruler
+- marking pencil (2A soft)
+- fabric dye
+- rotary cutter
+- cutting board
+
+")
+
+(def th-tools-content-md "
+TODO บางสิ่ง
+")
+
 (def text-lookup {:en {:sabong-guide   en-sabong-guide-md
                        :civara-guide   en-civara-guide-md
                        :sanghati-guide en-sanghati-guide-md
-                       :robe-size-note en-robe-size-note-md}
+                       :robe-size-note en-robe-size-note-md
+                       :borders-content en-borders-content-md
+                       :tools-content en-tools-content-md
+                       }
 
                   :th {:sabong-guide   th-sabong-guide-md
                        :civara-guide   th-civara-guide-md
                        :sanghati-guide th-sanghati-guide-md
-                       :robe-size-note th-robe-size-note-md}})
+                       :robe-size-note th-robe-size-note-md
+                       :borders-content th-borders-content-md
+                       :tools-content th-tools-content-md
+                       }})
 
 (defn text [key]
   (let [lang (get-in @state/state [:params :lang])]

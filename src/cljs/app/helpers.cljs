@@ -1,5 +1,6 @@
 (ns app.helpers
   (:require
+   [reagent.session :as session]
    [markdown.core :refer [md->html]]
    [dommy.core :as dommy :refer-macros [sel sel1]]
    [clojure.string :as string]
@@ -7,8 +8,12 @@
    [cljsjs.pdfmake]
    [cljsjs.pdfmakefonts]
    [decimal.core :as dc]
+   [app.state :as state]
    [app.text :refer [text]]
    ))
+
+(defn nav! [loc]
+  (set! (.-hash js/window.location) loc))
 
 (defn render-markdown []
   (doseq [c (sel :.render-markdown)]
@@ -110,3 +115,11 @@
         border-height (* mandala-height b2m-h)]
 
     [cut-width cut-height mandala-width mandala-height border-width border-height]))
+
+(defn href-to [page]
+  (str "/#/" (subs (str (get-in @state/state [:params :lang])) 1) "/" page))
+
+(defn this-page-str []
+  (subs (str (session/get :page)) 1))
+
+
