@@ -257,7 +257,7 @@
 
       [:div.container {:id "sanghati"}
        [:h3.s-title
-        [:a {:href "#sanghati", :class "anchor", :aria-hidden "true"} "#"] "Sanghati"]
+        [:a {:href "#sanghati", :class "anchor", :aria-hidden "true"} "#"] (text :sanghati)]
 
        [:div.docs-note
         [:h5.s-title {:id "sanghati-pattern"}

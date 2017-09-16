@@ -219,10 +219,10 @@
 
          [:div.container {:id "sabong"}
           [:h3.s-title
-           [:a {:href "#sabong", :class "anchor", :aria-hidden "true"} "#"] "Sabong"]
+           [:a {:href "#sabong", :class "anchor", :aria-hidden "true"} "#"] (text :sabong)]
           [:div.docs-note
            [:h5.s-title {:id "sabong-pattern"}
-            [:a {:href "#sabong-pattern", :class "anchor", :aria-hidden "true"} "#"] "Pattern"]
+            [:a {:href "#sabong-pattern", :class "anchor", :aria-hidden "true"} "#"] (text :pattern)]
 
            ;; Forms
            [:div.columns
@@ -230,7 +230,7 @@
 
              [:form
               [:div.form-group
-               [:label.form-label {:for "pattern_title"} "Title:"]
+               [:label.form-label {:for "pattern_title"} (str (text :title) ":")]
                [:input.form-input {:id "pattern_title" :type "text"
                                    :value (:title sabong)
                                    :on-change (fn [e]
@@ -243,7 +243,7 @@
 
                 [:div.form-group
                  [:div.col-6
-                  [:label.form-label {:for "robe_width"} "Final width:"]]
+                  [:label.form-label {:for "robe_width"} (str (text :final-width) ":")]]
                  [:div.col-6
                   [:input.form-input {:id "robe_width" :type "number"
                                       :value (:width sabong)
@@ -253,7 +253,7 @@
 
                 [:div.form-group
                  [:div.col-6
-                  [:label.form-label {:for "robe_height"} "Final height:"]]
+                  [:label.form-label {:for "robe_height"} (str (text :final-height) ":")]]
                  [:div.col-6
                   [:input.form-input {:id "robe_height" :type "number"
                                       :value (:height sabong)
@@ -266,7 +266,7 @@
                [:form.form-horizontal
                 [:div.form-group
                  [:div.col-8
-                  [:label.form-label {:for "shrinking_width_percent"} "Shrinking width percent:"]]
+                  [:label.form-label {:for "shrinking_width_percent"} (str (text :shrinking-width-percent) ":")]]
                  [:div.col-4
                   [:input.form-input {:id "shrinking_width_percent" :type "number"
                                       :value (:shrink-percent-width sabong)
@@ -277,7 +277,7 @@
 
                 [:div.form-group
                  [:div.col-8
-                  [:label.form-label {:for "shrinking_height_percent"} "Shrinking height percent:"]]
+                  [:label.form-label {:for "shrinking_height_percent"} (str (text :shrinking-height-percent) ":")]]
                  [:div.col-4
                   [:input.form-input {:id "shrinking_height_percent" :type "number"
                                       :value (:shrink-percent-height sabong)
@@ -293,7 +293,7 @@
                [:form.form-horizontal
                 [:div.form-group
                  [:div.col-6
-                  [:label.form-label {:for "kusi_width"} "Kusi:"]]
+                  [:label.form-label {:for "kusi_width"} (str (text :kusi) ":")]]
                  [:div.col-6
                   [:input.form-input {:id "kusi_width" :type "number"
                                       :value (:kusi-width sabong)
@@ -305,7 +305,7 @@
                [:form.form-horizontal
                 [:div.form-group
                  [:div.col-6
-                  [:label.form-label {:for "border_width"} "Border:"]]
+                  [:label.form-label {:for "border_width"} (str (text :border) ":")]]
                  [:div.col-6
                   [:input.form-input {:id "border_width" :type "number"
                                       :value (:border-width sabong)
@@ -317,7 +317,7 @@
                [:form.form-horizontal
                 [:div.form-group
                  [:div.col-6
-                  [:label.form-label {:for "buffer_width"} "Buffer:"]]
+                  [:label.form-label {:for "buffer_width"} (str (text :cutting-buffer) ":")]]
                  [:div.col-6
                   [:input.form-input {:id "buffer_width" :type "number"
                                       :value (:buffer-width sabong)
@@ -332,7 +332,7 @@
                {:on-click (fn [_] (h/download-pdf :#sabong-pattern-canvas
                                                   (:title sabong)
                                                   [0 0 0 0]))}
-               "Download PDF"]]]
+               (text :download-pdf)]]]
 
             [:div.col-1]
 
@@ -346,7 +346,7 @@
 
           [:div.docs-note
            [:h5.s-title {:id "sabong-guide"}
-            [:a {:href "#sabong-guide", :class "anchor", :aria-hidden "true"} "#"] "Guide"]
+            [:a {:href "#sabong-guide", :class "anchor", :aria-hidden "true"} "#"] (text :guide)]
            [:div.render-markdown
             (text :sabong-guide)]]]
         ))}))

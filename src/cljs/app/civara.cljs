@@ -23,15 +23,15 @@
 
         [:div.container {:id "civara"}
          [:h3.s-title
-          [:a {:href "#civara", :class "anchor", :aria-hidden "true"} "#"] "Civara"]
+          [:a {:href "#civara", :class "anchor", :aria-hidden "true"} "#"] (text :civara)]
          [:div.docs-note
           [:h5.s-title {:id "civara-pattern"}
-           [:a {:href "#civara-pattern", :class "anchor", :aria-hidden "true"} "#"] "Pattern"]
+           [:a {:href "#civara-pattern", :class "anchor", :aria-hidden "true"} "#"] (text :pattern)]
           [:p "..."]]
 
          [:div.docs-note
           [:h5.s-title {:id "civara-guide"}
-           [:a {:href "#civara-guide", :class "anchor", :aria-hidden "true"} "#"] "Guide"]
+           [:a {:href "#civara-guide", :class "anchor", :aria-hidden "true"} "#"] (text :guide)]
           [:div.render-markdown
            (text :civara-guide)]]]
         ))}))

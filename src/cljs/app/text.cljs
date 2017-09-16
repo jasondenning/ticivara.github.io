@@ -101,6 +101,23 @@ TODO บางสิ่ง
                        :robe-size-note en-robe-size-note-md
                        :borders-content en-borders-content-md
                        :tools-content en-tools-content-md
+                       :robe-sewing "Robe Sewing"
+                       :sabong "Sabong"
+                       :civara "Civara"
+                       :sanghati "Sanghati"
+                       :borders "Borders"
+                       :tools "Tools"
+                       :pattern "Pattern"
+                       :download-pdf "Download PDF"
+                       :guide "Guide"
+                       :title "Title:"
+                       :final-width "Final width"
+                       :final-height "Final height"
+                       :shrinking-width-percent "Shrinking width percent"
+                       :shrinking-height-percent "Shrinking height percent"
+                       :kusi "Kusi"
+                       :border "Border"
+                       :cutting-buffer "Cutting buffer"
                        }
 
                   :th {:sabong-guide   th-sabong-guide-md
@@ -109,6 +126,23 @@ TODO บางสิ่ง
                        :robe-size-note th-robe-size-note-md
                        :borders-content th-borders-content-md
                        :tools-content th-tools-content-md
+                       :robe-sewing "บางสิ่ง"
+                       :sabong "บางสิ่ง"
+                       :civara "บางสิ่ง"
+                       :sanghati "บางสิ่ง"
+                       :borders "บางสิ่ง"
+                       :tools "บางสิ่ง"
+                       :pattern "บางสิ่ง"
+                       :download-pdf "บางสิ่ง"
+                       :guide "บางสิ่ง"
+                       :title "บางสิ่ง"
+                       :final-width "บางสิ่ง"
+                       :final-height "บางสิ่ง"
+                       :shrinking-width-percent "บางสิ่ง"
+                       :shrinking-height-percent "บางสิ่ง"
+                       :kusi "บางสิ่ง"
+                       :border "บางสิ่ง"
+                       :cutting-buffer "บางสิ่ง"
                        }})
 
 (defn text [key]

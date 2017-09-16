@@ -1,5 +1,6 @@
 (ns app.elements
   (:require
+   [app.text :refer [text]]
    [app.helpers :as h]))
 
 (declare <sidebar> <navbar> <footer> <container> <lang-links>)
@@ -27,19 +28,19 @@
     [:br]
     [:a {:href "index.html"}
      #_[:img {:src "img/spectre-logo.svg", :alt "Spectre.css CSS Framework"}]
-     [:h2  "Robe Sewing"] ] ]
+     [:h2  (text :robe-sewing)] ] ]
    [:div.s-nav
     [:ul.menu.menu-nav
      [:li.menu-item
-      [:a {:href (h/href-to "sabong")} "Sabong"]]
+      [:a {:href (h/href-to "sabong")} (text :sabong)]]
      [:li.menu-item
-      [:a {:href (h/href-to "civara")} "Civara"]]
+      [:a {:href (h/href-to "civara")} (text :civara)]]
      [:li.menu-item
-      [:a {:href (h/href-to "sanghati")} "Sanghati"]]
+      [:a {:href (h/href-to "sanghati")} (text :sanghati)]]
      [:li.menu-item
-      [:a {:href (h/href-to "borders")} "Borders"]]
+      [:a {:href (h/href-to "borders")} (text :borders)]]
      [:li.menu-item
-      [:a {:href (h/href-to "tools")} "Tools"]]
+      [:a {:href (h/href-to "tools")} (text :tools)]]
      [:li.menu-item
       [<lang-links>]]]]
    ])
