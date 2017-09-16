@@ -17,13 +17,17 @@
         ;; don't use a hash, not very readable in the expressions
         pos-pattern-width 232
         pos-pattern-height 102
+        pos-img-offset-x 5
+        pos-img-offset-y 5
+        pos-text-offset-x (+ 0.0 pos-img-offset-x)
+        pos-text-offset-y (+ 0.0 pos-img-offset-y)
         pos-buffer-width 1.0
         pos-border-width 12.5
         pos-kusi-width 6.0
         pos-mandala-width 36.2
         pos-mandala-height 21.0
         ;; scale
-        pattern-scale 6.5
+        pattern-scale 14
         ;; calcualted size values to display, these could be user inputs
         ;; don't use a hash, not very readable in the expressions
         val-buffer-width (js/Number (:buffer-width sabong))
@@ -39,16 +43,16 @@
 
         ;; draws text with x y from the bottom left corner of the pattern image
         text (fn [ctx s x y] (let [sc pattern-scale
-                                   x (* x sc)
-                                   y (* (- pos-pattern-height y) sc)]
-                               (canvas/font-style ctx "12px \"Fira Sans\"")
+                                   x (* (+ x pos-text-offset-x) sc)
+                                   y (* (+ (- pos-pattern-height y) pos-text-offset-y) sc)]
+                               (canvas/font-style ctx "28px \"Fira Sans\"")
                                (canvas/fill-style ctx "#000000")
                                (canvas/text ctx {:text s :x x :y y})))
 
         text-title (fn [ctx s size x y]
                      (let [sc pattern-scale
-                           x (* x sc)
-                           y (* (- pos-pattern-height y) sc)]
+                           x (* (+ x pos-text-offset-x) sc)
+                           y (* (+ (- pos-pattern-height y) pos-text-offset-y) sc)]
                        (canvas/font-style ctx (str size " \"Butler\""))
                        (canvas/fill-style ctx "#000000")
                        (canvas/text ctx {:text s :x x :y y})))
@@ -90,27 +94,31 @@
                                               (* n (+ pos-mandala-height pos-kusi-width))
                                               (/ pos-mandala-height 2)) 1)))
 
-        text-accumulate-horiz (fn [ctx m k]
-                                (text-num ctx (+ val-buffer-width
-                                                 (when (< 0 (+ m k)) val-border-width)
-                                                 (* m val-mandala-width)
-                                                 (* k val-kusi-width))
-                                          (+ 1.5
-                                             (when (< 0 (+ m k)) pos-border-width)
+        ;; mandala, kusi, border, cut buffer
+        text-accumulate-horiz (fn [ctx m k b c x-offset]
+                                (text-num ctx (+ (* m val-mandala-width)
+                                                 (* k val-kusi-width)
+                                                 (* b val-border-width)
+                                                 (* c val-buffer-width))
+                                          (+ 0.5 x-offset
                                              (* m pos-mandala-width)
-                                             (* k pos-kusi-width))
+                                             (* k pos-kusi-width)
+                                             (* b pos-border-width)
+                                             (* c pos-buffer-width))
                                           99))
 
-        text-accumulate-vert (fn [ctx m k]
-                                (text-num ctx (+ val-buffer-width
-                                                 (when (< 0 (+ m k)) val-border-height)
-                                                 (* m val-mandala-height)
-                                                 (* k val-kusi-width))
+        ;; mandala, kusi, border, cut buffer
+        text-accumulate-vert (fn [ctx m k b c y-offset]
+                                (text-num ctx (+ (* m val-mandala-height)
+                                                 (* k val-kusi-width)
+                                                 (* b val-border-height)
+                                                 (* c val-buffer-width))
                                           226
-                                          (+ 1.5
-                                             (when (< 0 (+ m k)) pos-border-width)
+                                          (+ 1.0 y-offset
                                              (* m pos-mandala-height)
-                                             (* k pos-kusi-width))))
+                                             (* k pos-kusi-width)
+                                             (* b pos-border-width)
+                                             (* c pos-buffer-width))))
 
         ;; canvas
         canvas-dom (.getElementById js/document "sabong-pattern-canvas")
@@ -123,10 +131,12 @@
      (canvas/entity nil nil
       (fn [ctx val]
         (-> ctx
-            (canvas/draw-image img {:x 0 :y 0 :w (* pos-pattern-width pattern-scale)
+            (canvas/draw-image img {:x (* pos-img-offset-x pattern-scale)
+                                    :y (* pos-img-offset-y pattern-scale)
+                                    :w (* pos-pattern-width pattern-scale)
                                     :h (* pos-pattern-height pattern-scale)})
 
-            (text-title title "30px" 0 -8.0)
+            (text-title title "60px" 0 -8.0)
             (text (str "Cut Width: " (h/num-pad val-cut-width)
                        ", Cut Height: " (h/num-pad val-cut-height))
                   50.0 -8.0)
@@ -140,8 +150,8 @@
             (text-num val-border-width (- (- pos-pattern-width 7.5) 1) 10.2)
 
             ;; border height
-            (text-num val-border-height 12.0 5.0)
-            (text-num val-border-height (- (- pos-pattern-width 7.5) 1) 5.0)
+            (text-num val-border-height 9.0 5.4)
+            (text-num val-border-height (- (- pos-pattern-width 11.0) 1) 5.4)
 
             ;; mandala width
             (text-mandala-width 0)
@@ -166,24 +176,30 @@
             (text-mandala-height 2)
 
             ;; horizontal accumulative length
-            ;; FIXME can't use an atom until the draw loop is fixed
-            (text-accumulate-horiz 0 0)
-            (text-accumulate-horiz 1 0)
-            (text-accumulate-horiz 1 1)
-            (text-accumulate-horiz 2 1)
-            (text-accumulate-horiz 2 2)
-            (text-accumulate-horiz 3 2)
-            (text-accumulate-horiz 3 3)
-            (text-accumulate-horiz 4 3)
-            (text-accumulate-horiz 4 4)
+            (text-accumulate-horiz 0 0 0 1 0)
+            (text-accumulate-horiz 0 0 1 1 0)
+            (text-accumulate-horiz 1 0 1 1 0)
+            (text-accumulate-horiz 1 1 1 1 0)
+            (text-accumulate-horiz 2 1 1 1 0)
+            (text-accumulate-horiz 2 2 1 1 0)
+            (text-accumulate-horiz 3 2 1 1 0)
+            (text-accumulate-horiz 3 3 1 1 0)
+            (text-accumulate-horiz 4 3 1 1 0)
+            (text-accumulate-horiz 4 4 1 1 0)
+            (text-accumulate-horiz 5 4 1 1 0)
+            (text-accumulate-horiz 5 4 2 1 -6.0)
+            (text-accumulate-horiz 5 4 2 2 0)
 
             ;; vertical accumulative length
-            ;; FIXME can't use an atom until the draw loop is fixed
-            (text-accumulate-vert 0 0)
-            (text-accumulate-vert 1 0)
-            (text-accumulate-vert 1 1)
-            (text-accumulate-vert 2 1)
-            (text-accumulate-vert 2 2)
+            (text-accumulate-vert 0 0 0 1 0)
+            (text-accumulate-vert 0 0 1 1 0)
+            (text-accumulate-vert 1 0 1 1 0)
+            (text-accumulate-vert 1 1 1 1 0)
+            (text-accumulate-vert 2 1 1 1 0)
+            (text-accumulate-vert 2 2 1 1 0)
+            (text-accumulate-vert 3 2 1 1 0)
+            (text-accumulate-vert 3 2 2 1 -6.0)
+            (text-accumulate-vert 3 2 2 2 0)
 
             ))))
     ))
@@ -315,7 +331,7 @@
               [:button.btn.btn-primary
                {:on-click (fn [_] (h/download-pdf :#sabong-pattern-canvas
                                                   (:title sabong)
-                                                  [15 15 15 15]))}
+                                                  [0 0 0 0]))}
                "Download PDF"]]]
 
             [:div.col-1]
@@ -326,7 +342,7 @@
               (text :robe-size-note)]]]
            ;; end of Forms
 
-           [:canvas {:id "sabong-pattern-canvas" :width 1600 :height 1000}]]
+           [:canvas.pattern {:id "sabong-pattern-canvas" :width 3500 :height 2400}]]
 
           [:div.docs-note
            [:h5.s-title {:id "sabong-guide"}

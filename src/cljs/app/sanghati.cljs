@@ -122,8 +122,8 @@
                                       :w (* pos-pattern-width pattern-scale)
                                       :h (* pos-pattern-height pattern-scale)})
 
-            (text-title title "60px" 0 0)
-            (text (str "Pos Width: " pos-pattern-width ", Pos Height: " pos-pattern-height) 50.0 -8.0)
+            ;;(text-title title "60px" 0 0)
+            ;;(text (str "Pos Width: " pos-pattern-width ", Pos Height: " pos-pattern-height) 50.0 -8.0)
 
             ))))
 
@@ -175,8 +175,8 @@
                                       :w (* pos-pattern-width pattern-scale)
                                       :h (* pos-pattern-height pattern-scale)})
 
-            (text-title title "60px" 0 0)
-            (text (str "Pos Width: " pos-pattern-width ", Pos Height: " pos-pattern-height) 50.0 -8.0)
+            ;;(text-title title "60px" 0 0)
+            ;;(text (str "Pos Width: " pos-pattern-width ", Pos Height: " pos-pattern-height) 50.0 -8.0)
 
             ))))
 
@@ -228,8 +228,8 @@
                                       :w (* pos-pattern-width pattern-scale)
                                       :h (* pos-pattern-height pattern-scale)})
 
-            (text-title title "60px" 0 0)
-            (text (str "Pos Width: " pos-pattern-width ", Pos Height: " pos-pattern-height) 50.0 -8.0)
+            ;;(text-title title "60px" 0 0)
+            ;;(text (str "Pos Width: " pos-pattern-width ", Pos Height: " pos-pattern-height) 50.0 -8.0)
 
             ))))
 
@@ -385,10 +385,10 @@
               (text :robe-size-note)]]]
            ;; end of Forms
 
-        [:canvas {:id "sanghati-guide-canvas" :width 3500 :height 2400 :style {:max-width "1600px"}}]
-        [:canvas {:id "sanghati-panels-1-2-3-canvas" :width 3500 :height 2400 :style {:max-width "1600px"}}]
-        [:canvas {:id "sanghati-panels-4-5-6-canvas" :width 3500 :height 2400 :style {:max-width "1600px"}}]
-        [:canvas {:id "sanghati-panels-7-8-9-canvas" :width 3500 :height 2400 :style {:max-width "1600px"}}]
+        [:canvas.pattern {:id "sanghati-guide-canvas" :width 3500 :height 2400}]
+        [:canvas.pattern {:id "sanghati-panels-1-2-3-canvas" :width 3500 :height 2400}]
+        [:canvas.pattern {:id "sanghati-panels-4-5-6-canvas" :width 3500 :height 2400}]
+        [:canvas.pattern {:id "sanghati-panels-7-8-9-canvas" :width 3500 :height 2400}]
        ]
 
        [:div.docs-note
