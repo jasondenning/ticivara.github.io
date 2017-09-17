@@ -4,10 +4,10 @@
    [markdown.core :refer [md->html]]
    [dommy.core :as dommy :refer-macros [sel sel1]]
    [clojure.string :as string]
-   [monet.canvas :as canvas]
    [cljsjs.pdfmake]
    [cljsjs.pdfmakefonts]
    [decimal.core :as dc]
+   [app.canvas :as canvas]
    [app.state :as state]
    [app.text :refer [text]]
    ))
@@ -71,6 +71,7 @@
         ctx (canvas/get-context canvas-dom "2d")
         img (js/Image.)]
     (aset img "src" svg-path)
+    (aset img "onload" (fn [] (canvas/draw-once monet-canvas)))
     [monet-canvas img]))
 
 (defn num-pad [n]

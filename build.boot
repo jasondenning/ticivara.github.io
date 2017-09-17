@@ -6,7 +6,6 @@
                  [reagent                     "0.7.0"                   :exclusions [org.clojure/clojurescript]]
                  [reagent-utils               "0.2.1"]
                  [secretary                   "1.2.3"]
-                 [rm-hull/monet               "0.3.0"]
                  [markdown-clj                "1.0.1"]
                  [prismatic/dommy             "1.1.0"]
                  [cljsjs/pdfmake              "0.1.26-0"]

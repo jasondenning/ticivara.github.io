@@ -5,7 +5,7 @@
    [dommy.core :as dommy :refer-macros [sel sel1]]
    [clojure.string :as string]
    ;; features
-   [monet.canvas :as canvas]
+   [app.canvas :as canvas]
    ;; app
    [app.helpers :as h]
    [app.text :refer [text]]))
@@ -120,12 +120,7 @@
                                              (* b pos-border-width)
                                              (* c pos-buffer-width))))
 
-        ;; canvas
-        canvas-dom (.getElementById js/document "sabong-pattern-canvas")
-        monet-canvas (canvas/init canvas-dom "2d")
-        ctx (canvas/get-context canvas-dom "2d")
-        img (js/Image.)
-        _ (aset img "src" "img/sabong-pattern.svg")]
+        [monet-canvas img] (h/init-canvas :#sabong-pattern-canvas "img/sabong-pattern.svg")]
 
     (canvas/add-entity monet-canvas :background
      (canvas/entity nil nil
@@ -202,6 +197,8 @@
             (text-accumulate-vert 3 2 2 2 0)
 
             ))))
+
+    (canvas/draw-once monet-canvas)
     ))
 
 (defn sabong-update [data]

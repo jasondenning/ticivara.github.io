@@ -26,7 +26,7 @@
    [:div.s-brand
     [:a {:href "https://ticivara.github.io/"} "ticivara.github.io"]
     [:br]
-    [:a {:href "index.html"}
+    [:a {:href "/"}
      #_[:img {:src "img/spectre-logo.svg", :alt "Spectre.css CSS Framework"}]
      [:h2  (text :robe-sewing)] ] ]
    [:div.s-nav

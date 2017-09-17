@@ -4,9 +4,8 @@
    [reagent.core :as r]
    [dommy.core :as dommy :refer-macros [sel sel1]]
    [clojure.string :as string]
-   ;; features
-   [monet.canvas :as canvas]
    ;; app
+   [app.canvas :as canvas]
    [app.helpers :as h]
    [app.text :refer [text]]))
 
@@ -74,6 +73,7 @@
 
             ))))
 
+    (canvas/draw-once canvas-guide)
     ))
 
 (defn draw-panels-1 [data]
@@ -127,6 +127,7 @@
 
             ))))
 
+    (canvas/draw-once canvas-panels-1)
     ))
 
 (defn draw-panels-4 [data]
@@ -180,6 +181,7 @@
 
             ))))
 
+    (canvas/draw-once canvas-panels-4)
     ))
 
 (defn draw-panels-7 [data]
@@ -233,6 +235,7 @@
 
             ))))
 
+    (canvas/draw-once canvas-panels-7)
     ))
 
 (defn draw-sanghati-pattern [data]
