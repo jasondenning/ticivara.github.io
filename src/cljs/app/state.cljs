@@ -3,10 +3,10 @@
 
 (defonce state
   (r/atom {:sabong {:title (str "Sabong " (.getFullYear (js/Date.)))
-                    :width 230
-                    :height 100
+                    :width 228
+                    :height 99
                     :buffer-width 1
-                    :border-width 12.5
+                    :border-width 12
                     :kusi-width 6.0
                     :shrink-percent-width 0
                     :shrink-percent-height 0}
