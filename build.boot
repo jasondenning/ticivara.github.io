@@ -60,6 +60,7 @@
         (target :dir #{"target/"})))
 
 (deftask dist []
-  (comp (sass :output-style :compressed)
+  (comp (site)
+        (sass :output-style :compressed)
         (cljs :optimizations :advanced)
         (target :dir #{"dist"} :no-clean true)))
